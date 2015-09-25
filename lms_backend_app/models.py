@@ -1,8 +1,11 @@
 from django.contrib.auth.models import User
+from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 # Create your models here.
+from django.db.models import ForeignKey
+
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
 
@@ -21,7 +24,7 @@ GOING TO USE DJANGO USER GROUPS FOR THE BASE USER MODEL - this is why you don't 
 class UserProfile(models.Model):
     user = models.ForeignKey(User)
     course = models.ForeignKey(Course)
-    inmate_id = models.TextField
+    inmate_id = models.TextField()
 
 class Course(models.Model):
     name = models.CharField(max_length = 128)
@@ -33,7 +36,7 @@ class Attendance(models.Model):
 
 class Note(models.Model):
     # Agnostic Notes encompassing Faculty and Student notes with many content types
-    author = models.foreignKey(User)
+    author = models.ForeignKey(User)
     notes = models.TextField()
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
@@ -41,20 +44,20 @@ class Note(models.Model):
 
 class Feedback(models.Model):
     # Agnostic feedback
-    author = models.foreignKey(User)
-    rating = 1 - 10 numeric (10 best, 1 worst)
-    feedback_type = models.foreignKey(FeedbackType)
+    author = models.ForeignKey(User)
+    rating = models.IntegerField() #1 - 10 numeric (10 best, 1 worst)
+    feedback_type = models.ForeignKey(FeedbackType)
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
 class FeedbackType(models.Model):
-    name = CharField(max_length=128)
+    name = models.CharField(max_length=128)
 
 class Lesson(models.Model):
-    name = CharField(max_length=128)
+    name = models.CharField(max_length=128)
     readme_content = models.TextField()
-    course = ForeignKey(Course)
+    course = models.ForeignKey(Course)
 
 class ContentType(models.Model):
     name = models.CharField(max_length = 128)
@@ -85,24 +88,24 @@ class Question(models.Model)
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
 class UnitTest(models.Model):
-unit_test = TextField()
-question = ForeignKey(Question)
-code_type = ForeignKey(CodeType)
+    unit_test = models.TextField()
+    question = models.ForeignKey(Question)
+    code_type = models.ForeignKey(CodeType)
 
 class CodeType(models.Model):
-    name = models.CharField(256)
+    name = models.CharField(max_length= 256)
 
 class Choice(models.Model):
-    question = ForeignKey(Question)
+    question = models.ForeignKey(Question)
     choices = models.TextField()
 
-class TestResult(models.Model)
+class TestResult(models.Model):
     test = models.ForeignKey(Test)
-    student = models.ForeignKey(Student)
-    teacher = models.ForeignKey(Instructor)
+    student = models.ForeignKey(User)
+    teacher = models.ForeignKey(User)
     question_list_selection = models.ManyToMany(Question)
 
-class Tag(models.Model)
+class Tag(models.Model):
     model = models.CharField(256)
     record_id = models.IntegerField(max_length = 2)
     tags = models.TextField()
