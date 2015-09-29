@@ -25,12 +25,17 @@ GOING TO USE DJANGO USER GROUPS FOR THE BASE USER MODEL - this is why you don't 
 class Course(models.Model):
     name = models.CharField(max_length=128)
 
+    def __unicode__(self):
+        return self.name
+
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User)
     course = models.ForeignKey(Course)
     inmate_id = models.TextField()
 
+    def __unicode__(self):
+        return self.user.first_name
 
 class Attendance(models.Model):
     student = models.ForeignKey(UserProfile)
