@@ -3,8 +3,8 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
+
 # Create your models here.
-from django.db.models import ForeignKey
 
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
@@ -33,8 +33,8 @@ class UserProfile(models.Model):
 
 
 class Attendance(models.Model):
-    student = models.ForeignKey(User)
-    teacher = models.ForeignKey(User)
+    student = models.ForeignKey(UserProfile)
+    instructor = models.OneToOneField(User, primary_key= False)
     date = models.DateTimeField()
 
 
@@ -52,11 +52,9 @@ class CodeType(models.Model):
 
 
 class Question(models.Model):
-    # for a test or an item on a lesson
     question = models.TextField()
-    code_type = ForeignKey(CodeType)
-    # make relatable to Test or a Lesson
-    content_type = models.ForeignKey(CustomContentType)
+    code_type = models.ForeignKey(CodeType)
+    content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
@@ -65,7 +63,7 @@ class Note(models.Model):
     # Agnostic Notes encompassing Faculty and Student notes with many content types
     author = models.ForeignKey(User)
     notes = models.TextField()
-    content_type = models.ForeignKey(CustomContentType)
+    content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
@@ -73,9 +71,9 @@ class Note(models.Model):
 class Feedback(models.Model):
     # Agnostic feedback
     author = models.ForeignKey(User)
-    rating = models.PositiveIntegerField(max_length=10)  # 1 - 10 numeric (10 best, 1 worst)
+    rating = models.PositiveIntegerField()  # 1 - 10 numeric (10 best, 1 worst)
     feedback_type = models.ForeignKey(FeedbackType)
-    content_type = models.ForeignKey(CustomContentType)
+    content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
@@ -87,15 +85,15 @@ class Lesson(models.Model):
 
 
 class BinaryContent(models.Model):
-    content_type = models.ForeignKey(CustomContentType)
+    content_type = models.ForeignKey(ContentType)
     link = models.FileField()
     lesson = models.ForeignKey(Lesson)
 
 
 class TextContent(models.Model):
-    content_type = models.ForeignKey(CustomContentType)
-    text = models.TextField()
     # (This is where the markdown will live. Increased to fit large lessons)
+    content_type = models.ForeignKey(ContentType)
+    text = models.TextField()
     lesson = models.ForeignKey(Lesson)
 
 
@@ -117,15 +115,15 @@ class Choice(models.Model):
 
 class TestResult(models.Model):
     test = models.ForeignKey(Test)
-    student = models.ForeignKey(User)
-    teacher = models.ForeignKey(User)
+    student = models.ForeignKey(UserProfile)
+    instructor = models.OneToOneField(User, primary_key= False)
     question_list_selection = models.ManyToManyField(Question)
 
 
 class Tag(models.Model):
-    model = models.CharField(256)
-    record_id = models.IntegerField(max_length=2)
+    model = models.CharField(max_length=256)
+    record_id = models.IntegerField()
     tags = models.TextField()
-    content_type = models.ForeignKey(CustomContentType)
+    content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
