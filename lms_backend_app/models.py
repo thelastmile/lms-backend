@@ -38,8 +38,8 @@ class UserProfile(models.Model):
         return self.user.first_name
 
 class Attendance(models.Model):
-    student = models.ForeignKey(UserProfile)
-    instructor = models.OneToOneField(User, primary_key= False)
+    student = models.ForeignKey(User, related_name='student')
+    instructor = models.ForeignKey(User, related_name='instructor')
     date = models.DateTimeField()
 
 
@@ -55,14 +55,20 @@ class FeedbackType(models.Model):
 class CodeType(models.Model):
     name = models.CharField(max_length=256)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Question(models.Model):
+    # can pertain to a lesson or test
     question = models.TextField()
     code_type = models.ForeignKey(CodeType)
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
+    def __unicode__(self):
+        return self.question
 
 class Note(models.Model):
     # Agnostic Notes encompassing Faculty and Student notes with many content types
@@ -72,6 +78,8 @@ class Note(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
+    def __unicode__(self):
+        return self.author
 
 class Feedback(models.Model):
     # Agnostic feedback
@@ -82,24 +90,31 @@ class Feedback(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
+    def __unicode__(self):
+        return self.author
 
-class Lesson(models.Model):
+class Module(models.Model):
     name = models.CharField(max_length=128)
     readme_content = models.TextField()
     course = models.ForeignKey(Course)
+
+    def __unicode__(self):
+        return self.name
 
 
 class BinaryContent(models.Model):
     content_type = models.ForeignKey(ContentType)
     link = models.FileField()
-    lesson = models.ForeignKey(Lesson)
+    module = models.ForeignKey(Module)
 
+    def __unicode__(self):
+        return self.
 
 class TextContent(models.Model):
     # (This is where the markdown will live. Increased to fit large lessons)
     content_type = models.ForeignKey(ContentType)
     text = models.TextField()
-    lesson = models.ForeignKey(Lesson)
+    module = models.ForeignKey(Module)
 
 
 class Test(models.Model):

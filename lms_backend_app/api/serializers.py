@@ -7,3 +7,5 @@ class UserSerializer(serializers.ModelSerializer):
 		model = UserProfile
 		# Un - comment below for the optional object model attributes
 		fields = ('user', 'course', 'inmate_id', )
+
+	# TODO SERIALIZE ALL MODELS.
