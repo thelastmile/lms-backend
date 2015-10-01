@@ -46,10 +46,15 @@ class Attendance(models.Model):
 class CustomContentType(models.Model):
     name = models.CharField(max_length=128)
     # (ex, video, audio, text, README, Markdown etc)
+    def __unicode__(self):
+        return self.name
 
 
 class FeedbackType(models.Model):
     name = models.CharField(max_length=128)
+
+    def __unicode__(self):
+        return self.name
 
 
 class CodeType(models.Model):
@@ -60,7 +65,7 @@ class CodeType(models.Model):
 
 
 class Question(models.Model):
-    # can pertain to a lesson or test
+    # can pertain to a module or test
     question = models.TextField()
     code_type = models.ForeignKey(CodeType)
     content_type = models.ForeignKey(ContentType)
@@ -108,7 +113,8 @@ class BinaryContent(models.Model):
     module = models.ForeignKey(Module)
 
     def __unicode__(self):
-        return self.
+        return self.content_type
+
 
 class TextContent(models.Model):
     # (This is where the markdown will live. Increased to fit large lessons)
@@ -116,10 +122,16 @@ class TextContent(models.Model):
     text = models.TextField()
     module = models.ForeignKey(Module)
 
+    def __unicode__(self):
+        return self.content_type
+
 
 class Test(models.Model):
     question_list_selection = models.ManyToManyField(Question)
     created = models.DateTimeField()
+
+    def __unicode__(self):
+        return self.question_list_selection
 
 
 class UnitTest(models.Model):
@@ -127,17 +139,27 @@ class UnitTest(models.Model):
     question = models.ForeignKey(Question)
     code_type = models.ForeignKey(CodeType)
 
+    def __unicode__(self):
+        return self.unit_test
+
 
 class Choice(models.Model):
     question = models.ForeignKey(Question)
     choices = models.TextField()
 
+    def __unicode__(self):
+        return self.question
+
 
 class TestResult(models.Model):
+    score = models.IntegerField(default=0)
     test = models.ForeignKey(Test)
     student = models.ForeignKey(UserProfile)
     instructor = models.OneToOneField(User, primary_key= False)
     question_list_selection = models.ManyToManyField(Question)
+
+    def __unicode__(self):
+        return self.score
 
 
 class Tag(models.Model):
@@ -147,3 +169,6 @@ class Tag(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
+
+    def __unicode__(self):
+        return self.model
