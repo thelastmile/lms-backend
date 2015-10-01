@@ -30,7 +30,7 @@ class Course(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     course = models.ForeignKey(Course)
     inmate_id = models.TextField()
 
