@@ -42,6 +42,9 @@ class Attendance(models.Model):
     instructor = models.ForeignKey(User, related_name='instructor')
     date = models.DateTimeField()
 
+    def __unicode__(self):
+        return '%s %s' % (self.student, self.date)
+
 
 class CustomContentType(models.Model):
     name = models.CharField(max_length=128)
@@ -108,7 +111,7 @@ class Module(models.Model):
 
 
 class BinaryContent(models.Model):
-    content_type = models.ForeignKey(ContentType)
+    content_type = models.ForeignKey(ContentType, default='BinaryContent')
     link = models.FileField()
     module = models.ForeignKey(Module)
 
@@ -171,4 +174,4 @@ class Tag(models.Model):
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
     def __unicode__(self):
-        return self.model
+        return self.tags
