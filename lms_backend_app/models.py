@@ -53,13 +53,6 @@ class CustomContentType(models.Model):
         return self.name
 
 
-class FeedbackType(models.Model):
-    name = models.CharField(max_length=128)
-
-    def __unicode__(self):
-        return self.name
-
-
 class CodeType(models.Model):
     name = models.CharField(max_length=256)
 
@@ -89,17 +82,27 @@ class Note(models.Model):
     def __unicode__(self):
         return self.author
 
+
+class FeedbackType(models.Model):
+    name = models.CharField(max_length=128)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Feedback(models.Model):
     # Agnostic feedback
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, related_name='feedback_author')
+    student = models.ForeignKey(User, related_name='student')
     rating = models.PositiveIntegerField()  # 1 - 10 numeric (10 best, 1 worst)
     feedback_type = models.ForeignKey(FeedbackType)
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType, null=True)
+    object_id = models.PositiveIntegerField(null=True)
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
     def __unicode__(self):
-        return self.author
+        return '%s %d' % (self.author, self.rating)
+
 
 class Module(models.Model):
     name = models.CharField(max_length=128)
@@ -151,7 +154,7 @@ class Choice(models.Model):
     choices = models.TextField()
 
     def __unicode__(self):
-        return self.question
+        return '%s : %s' % (self.question, self.choices)
 
 
 class TestResult(models.Model):
