@@ -92,12 +92,13 @@ class FeedbackType(models.Model):
 
 class Feedback(models.Model):
     # Agnostic feedback
+    #TODO NEEDS ATTENTION: HOOK UP TO AUTHOR AND STUDENT
     author = models.ForeignKey(User, related_name='feedback_author')
-    student = models.ForeignKey(User, related_name='student')
+    student = models.ForeignKey(User, related_name='feedback_student')
     rating = models.PositiveIntegerField()  # 1 - 10 numeric (10 best, 1 worst)
     feedback_type = models.ForeignKey(FeedbackType)
-    content_type = models.ForeignKey(ContentType, null=True)
-    object_id = models.PositiveIntegerField(null=True)
+    content_type = models.ForeignKey(ContentType, blank=True, null=True)
+    object_id = models.PositiveIntegerField(blank=True, null=True)
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
     def __unicode__(self):
