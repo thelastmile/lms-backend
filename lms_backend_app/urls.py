@@ -26,6 +26,7 @@ router.register(r'tag', TagViewSet, base_name='tag')
 
 # just general index and api setup for now
 urlpatterns = [
+	url(r'^api/docs/', include('rest_framework_swagger.urls')),
 	url(r'^api/', include(router.urls)),
 	url(r'^$', views.index, name='index'),
 ]

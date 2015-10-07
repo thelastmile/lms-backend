@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'lms_backend_app',
+    'rest_framework_swagger',
 )
 
 MIDDLEWARE_CLASSES = (
