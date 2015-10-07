@@ -40,7 +40,7 @@ class UserProfile(models.Model):
 class Attendance(models.Model):
     student = models.ForeignKey(User, related_name='student')
     instructor = models.ForeignKey(User, related_name='instructor')
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return '%s %s' % (self.student, self.date)
@@ -135,7 +135,7 @@ class TextContent(models.Model):
 
 class Test(models.Model):
     question_list_selection = models.ManyToManyField(Question)
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_created=True)
 
     def __unicode__(self):
         return self.question_list_selection
