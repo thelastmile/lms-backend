@@ -1,19 +1,16 @@
 # lms-backend
 
 
-##installation
-```git clone```
+###Installation
+1. ```git clone``` with your credentials
+2. ```cd lms-backend```
 
-```cd lms-backend```
+###Setup Virtual Environment
+1. ```virtualenv venv```
+2. ```. venv/bin/activate```
+3. ```pip install -r```
 
-```virtualenv venv```
-
-````. venv/bin/activate```
-
-```pip install -r```
-
-```cd lms_backend_app/```
-
+###Local Development Server
 ```./manage.py runserver```
 
 Open your browser to ```http://127.0.0.1:8000/```
