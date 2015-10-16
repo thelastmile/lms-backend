@@ -16,7 +16,7 @@ pathspec==0.3.4
 psycopg2==2.6.1
 python-dateutil==2.4.2
 PyYAML==3.11
-requests==2.8.1
+requests==2.7
 six==1.10.0
 texttable==0.8.3
 wcwidth==0.1.5
