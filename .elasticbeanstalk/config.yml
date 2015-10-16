@@ -1,0 +1,10 @@
+branch-defaults:
+  ebdeployment:
+    environment: lms-backend-dev
+global:
+  application_name: lms-backend
+  default_ec2_keyname: tlm
+  default_platform: Python 2.7
+  default_region: us-west-2
+  profile: tlm
+  sc: git

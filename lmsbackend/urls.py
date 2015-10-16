@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
+from lms_backend_app import urls as lms_backend_app_urls
 
 urlpatterns = [
     # Examples:
@@ -7,5 +8,5 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'', include(lms_backend_app_urls))
 ]
