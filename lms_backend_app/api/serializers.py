@@ -6,7 +6,7 @@ from lms_backend_app.models import UserProfile, Course, CustomContentType, Feedb
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserProfile
+        model = User
 
 
 class AttendanceSerializer(serializers.ModelSerializer):

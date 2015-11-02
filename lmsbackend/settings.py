@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'lms_backend_app',
     'rest_framework_swagger',
+    'rest_framework.authtoken',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,17 +113,31 @@ USE_L10N = True
 
 USE_TZ = True
 
+# DRF Settings
+# disabled auth for easier testing.
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication',),
+}
+
+#REST_FRAMEWORK = {
+#    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'rest_framework.permissions.AllowAny',
+#        #'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+#        #'rest_framework.authentication.TokenAuthentication',
+#    ),
+#    'DEFAULT_PERMISSION_CLASSES': (
+#        'rest_framework.permissions.IsAuthenticated',
+#    )
+#}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-REST_FRAMEWORK = {
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
-}
-
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'finalmatch'
+AWS_STORAGE_BUCKET_NAME = 'tlm-backend-static'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
@@ -130,7 +145,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATIC_URL = "//%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
 
-MEDIA_URL = "//%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
 #STATIC_DIRECTORY = '/static/'
 MEDIA_DIRECTORY = '/media/'
 
