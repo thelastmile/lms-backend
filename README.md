@@ -2,8 +2,10 @@
 
 
 ###Installation
-1. ```git clone git@github.com:thelastmile/lms-backend.git```
-2. ```cd lms-backend```
+```
+git clone git@github.com:thelastmile/lms-backend.git
+cd lms-backend
+```
 
 ###Setup Virtual Environment
 ```
