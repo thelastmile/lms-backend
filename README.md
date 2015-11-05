@@ -8,7 +8,7 @@
 ###Setup Virtual Environment
 1. ```virtualenv venv```
 2. ```. venv/bin/activate```
-3. ```pip install -r```
+3. ```pip install -r requirements.txt```
 
 ###Local Development Server
 ```./manage.py runserver```
