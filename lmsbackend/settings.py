@@ -149,3 +149,8 @@ MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
 #STATIC_DIRECTORY = '/static/'
 MEDIA_DIRECTORY = '/media/'
 
+# Import local settings
+try:
+    from local_settings import *
+except ImportError:
+    pass
