@@ -65,3 +65,6 @@ target/
 
 .DS_Store
 db.sqlite3
+node_modules/*
+bower_components
+local_settings.py
