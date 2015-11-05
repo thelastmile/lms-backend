@@ -23,3 +23,11 @@ python manage.py createsuperuser
 ```
 
 Open your browser to ```http://127.0.0.1:8000/```
+
+###Initial Data Setup
+
+Create the following groups via Django Admin:
+
+`Inmate`, `Facilitator`, `Super Admin`
+
+Create a separate user that will belong to each group for full testing spectrum
