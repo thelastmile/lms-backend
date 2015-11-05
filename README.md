@@ -2,15 +2,24 @@
 
 
 ###Installation
-1. ```git clone``` with your credentials
-2. ```cd lms-backend```
+```
+git clone git@github.com:thelastmile/lms-backend.git
+cd lms-backend
+```
 
 ###Setup Virtual Environment
-1. ```virtualenv venv```
-2. ```. venv/bin/activate```
-3. ```pip install -r```
+```
+virtualenv venv
+. venv/bin/activate
+pip install -r requirements.txt
+```
 
 ###Local Development Server
-```./manage.py runserver```
+```
+python manage.py syncdb --noinput
+python manage.py migrate
+python manage.py createsuperuser
+./manage.py runserver
+```
 
 Open your browser to ```http://127.0.0.1:8000/```
