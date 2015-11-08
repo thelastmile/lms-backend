@@ -74,13 +74,14 @@ class Question(models.Model):
 class Note(models.Model):
     # Agnostic Notes encompassing Faculty and Student notes with many content types
     author = models.ForeignKey(User)
-    notes = models.TextField()
+    title = models.CharField(max_length=256)
+    body = models.TextField()
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
     def __unicode__(self):
-        return self.author
+        return self.title
 
 
 class FeedbackType(models.Model):
