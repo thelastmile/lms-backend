@@ -26,7 +26,7 @@ Open your browser to ```http://127.0.0.1:8000/```
 
 ###Initial Data Setup
 
-Create the following groups via Django Admin:
+Create the following groups via Django Admin: ```http://127.0.0.1:8000/admin/```
 
 `Inmate`, `Facilitator`, `Super Admin`
 
