@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ```
 python manage.py syncdb --noinput
 python manage.py migrate
-python manage.py createsuperuser
+python manage.py createsuperuser // enter in credentials you would like to log in
 ./manage.py runserver
 ```
 
