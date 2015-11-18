@@ -28,7 +28,7 @@ Enter your user credentials that were created
 
 ###Initial Data Setup
 
-Create the following groups via Django Admin:
+Create the following Groups via Django Admin:
 
 `Inmate`, `Facilitator`, `Super Admin`
 
