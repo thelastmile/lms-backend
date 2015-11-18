@@ -22,7 +22,9 @@ python manage.py createsuperuser // enter in credentials you would like to log i
 ./manage.py runserver
 ```
 
-Open your browser to ```http://127.0.0.1:8000/```
+Open your browser to ```http://127.0.0.1:8000/admin/```
+
+Enter your user credentials that were created
 
 ###Initial Data Setup
 
