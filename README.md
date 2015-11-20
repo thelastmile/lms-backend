@@ -18,15 +18,17 @@ pip install -r requirements.txt
 ```
 python manage.py syncdb --noinput
 python manage.py migrate
-python manage.py createsuperuser
+python manage.py createsuperuser // enter in credentials you would like to log in
 ./manage.py runserver
 ```
 
-Open your browser to ```http://127.0.0.1:8000/```
+Open your browser to ```http://127.0.0.1:8000/admin/```
+
+Enter your user credentials that were created
 
 ###Initial Data Setup
 
-Create the following groups via Django Admin:
+Create the following Groups via Django Admin:
 
 `Inmate`, `Facilitator`, `Super Admin`
 
