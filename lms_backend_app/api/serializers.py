@@ -3,11 +3,15 @@ from rest_framework import serializers
 from lms_backend_app.models import UserProfile, Course, CustomContentType, FeedbackType, CodeType, Question, Note, \
     Feedback, Module, BinaryContent, TextContent, Test, UnitTest, Choice, TestResult, Tag, Attendance
 
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
 
 class UserSerializer(serializers.ModelSerializer):
+    groups = GroupSerializer(many=True)
+
     class Meta:
         model = User
-
 
 class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:

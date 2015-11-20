@@ -9,13 +9,16 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """
-        Optionally restricts the returned purchases to a given user,
+        Optionally restricts the returned set to a given user,
         by filtering against a `username` query parameter in the URL.
         """
         queryset = User.objects.all()
         username = self.request.query_params.get('username', None)
         if username is not None:
             queryset = queryset.filter(username=username)
+            #user = queryset.get()
+            #print user.groups
+            #user.groups = [user.groups.all()]
         return queryset
 
 

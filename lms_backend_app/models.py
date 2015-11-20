@@ -3,9 +3,6 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
-
-# Create your models here.
-
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
 
@@ -74,11 +71,12 @@ class Question(models.Model):
 class Note(models.Model):
     # Agnostic Notes encompassing Faculty and Student notes with many content types
     author = models.ForeignKey(User)
-    title = models.CharField(max_length=256)
+    title = models.CharField(max_length=256,blank=True, null=True)
     body = models.TextField()
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
+    # ADD DATETIME
 
     def __unicode__(self):
         return self.title
