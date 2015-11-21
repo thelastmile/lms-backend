@@ -4,6 +4,7 @@ email_port = 587
 email_use_tls = True
 email_host_password = ''
 DEBUG = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
