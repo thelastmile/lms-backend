@@ -14,21 +14,21 @@ virtualenv venv
 pip install -r requirements.txt
 ```
 
-###Local Development Server
+###Initial Setup
+
 ```
+./manage.py loaddata initial_data__groups
 python manage.py syncdb --noinput
 python manage.py migrate
 python manage.py createsuperuser // enter in credentials you would like to log in
-./manage.py runserver
 ```
+`cp local_settings.example.py local_settings.py` <- edit your local_settings.py to meet your needs
 
-Open your browser to ```http://127.0.0.1:8000/admin/```
+###Run the server (local dev)
+`./manage.py runserver`
+
+Open your browser to `http://127.0.0.1:8000/admin/`
 
 Enter your user credentials that were created
 
-###Initial Data Setup
-
-Create groups
- `./manage.py loaddata initial_data__groups`
-
-Create a separate user that will belong to each group for full testing spectrum
+* Create a separate user that will belong to each group for full testing spectrum
