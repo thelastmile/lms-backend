@@ -31,4 +31,4 @@ Open your browser to `http://127.0.0.1:8000/admin/`
 
 Enter your user credentials that were created
 
-* Create a separate user that will belong to each group for full testing spectrum
+Create a separate user that will belong to each group for full testing spectrum
