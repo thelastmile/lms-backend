@@ -1,0 +1,1 @@
+[{"fields": {"name": "Inmate", "permissions": []}, "model": "auth.group", "pk": 1}, {"fields": {"name": "Faculty", "permissions": []}, "model": "auth.group", "pk": 2}, {"fields": {"name": "Super Admin", "permissions": []}, "model": "auth.group", "pk": 3}]
