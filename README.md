@@ -28,8 +28,7 @@ Enter your user credentials that were created
 
 ###Initial Data Setup
 
-Create the following Groups via Django Admin:
-
-`Inmate`, `Facilitator`, `Super Admin`
+Create groups
+ `./manage.py loaddata initial_data__groups`
 
 Create a separate user that will belong to each group for full testing spectrum
