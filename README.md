@@ -21,8 +21,9 @@ python manage.py syncdb --noinput
 python manage.py migrate
 ./manage.py loaddata initial_data__groups
 python manage.py createsuperuser // enter in credentials you would like to log in
-```
-`cp local_settings.example.py local_settings.py` <- edit your local_settings.py to meet your needs
+cp local_settings.example.py local_settings.py```
+
+Edit your local_settings.py to meet your needs.  For local dev the as-is local_settings.example.py is good to go.  For production Debug must be off, S3 keys must be added and STATICFILES_STORAGE/DEFAULT_FILE_STORAGE lines removed.
 
 ###Run the server (local dev)
 `./manage.py runserver`
