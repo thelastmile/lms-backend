@@ -17,9 +17,9 @@ pip install -r requirements.txt
 ###Initial Setup
 
 ```
-./manage.py loaddata initial_data__groups
 python manage.py syncdb --noinput
 python manage.py migrate
+./manage.py loaddata initial_data__groups
 python manage.py createsuperuser // enter in credentials you would like to log in
 ```
 `cp local_settings.example.py local_settings.py` <- edit your local_settings.py to meet your needs
