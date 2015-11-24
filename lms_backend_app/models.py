@@ -34,9 +34,16 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.first_name
 
+ATTENDANCE_CHOICES = (
+    (None, "Student Not Present"),
+    (True, "Student Present Full Class Time"),
+    (False, "Student Present Partial Class Time")
+)
+
 class Attendance(models.Model):
     student = models.ForeignKey(User, related_name='student')
     instructor = models.ForeignKey(User, related_name='instructor')
+    attendance = models.NullBooleanField(choices = ATTENDANCE_CHOICES)
     date = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
