@@ -44,7 +44,7 @@ class Attendance(models.Model):
     student = models.ForeignKey(User, related_name='student')
     instructor = models.ForeignKey(User, related_name='instructor')
     attendance = models.NullBooleanField(choices = ATTENDANCE_CHOICES)
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return '%s %s' % (self.student, self.date)

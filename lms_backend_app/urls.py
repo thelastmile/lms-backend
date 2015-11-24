@@ -8,6 +8,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, base_name='users')
 router.register(r'course', CourseViewSet, base_name='course')
 router.register(r'attendance', AttendanceViewSet, base_name='attendance')
+#router.register(r'attendancegraph', AttendanceGraphViewSet, base_name='attendancegraph')
 router.register(r'customcontenttype', CustomContentTypeViewSet, base_name='customcontenttype')
 router.register(r'feedbacktype', FeedbackTypeViewSet, base_name='feedbacktype')
 router.register(r'codetype', CodeTypeViewSet, base_name='codetype')
@@ -29,4 +30,5 @@ urlpatterns = [
 	url(r'^api/docs/', include('rest_framework_swagger.urls')),
 	url(r'^api/', include(router.urls)),
 	url(r'^$', views.index, name='index'),
+	url(r'^api/attendancegraphdaily/$', AttendanceGraphViewDaily.as_view()),
 ]

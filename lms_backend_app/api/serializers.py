@@ -17,7 +17,6 @@ class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendance
 
-
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
