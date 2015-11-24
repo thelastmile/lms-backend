@@ -6,9 +6,9 @@ from rest_framework import routers
 # API router set up
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, base_name='users')
+router.register(r'students', StudentViewSet, base_name='students')
 router.register(r'course', CourseViewSet, base_name='course')
 router.register(r'attendance', AttendanceViewSet, base_name='attendance')
-#router.register(r'attendancegraph', AttendanceGraphViewSet, base_name='attendancegraph')
 router.register(r'customcontenttype', CustomContentTypeViewSet, base_name='customcontenttype')
 router.register(r'feedbacktype', FeedbackTypeViewSet, base_name='feedbacktype')
 router.register(r'codetype', CodeTypeViewSet, base_name='codetype')

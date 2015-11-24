@@ -28,6 +28,22 @@ class UserViewSet(viewsets.ModelViewSet):
             #user.groups = [user.groups.all()]
         return queryset
 
+class StudentViewSet(viewsets.ModelViewSet):
+    serializer_class = StudentSerializer
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned set to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = User.objects.filter(groups__name='Inmate')
+        username = self.request.query_params.get('username', None)
+        if username is not None:
+            queryset = queryset.filter(username=username)
+            #user = queryset.get()
+            #print user.groups
+            #user.groups = [user.groups.all()]
+        return queryset
 
 class AttendanceViewSet(viewsets.ModelViewSet):
     queryset = Attendance.objects.all()
