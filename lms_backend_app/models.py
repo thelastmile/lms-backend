@@ -113,7 +113,7 @@ class Feedback(models.Model):
 
 class Module(models.Model):
     name = models.CharField(max_length=128)
-    readme_content = models.TextField()
+    description = models.TextField()
     course = models.ForeignKey(Course)
 
     def __unicode__(self):

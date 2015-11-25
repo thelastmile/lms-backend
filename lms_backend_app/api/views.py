@@ -40,9 +40,6 @@ class StudentViewSet(viewsets.ModelViewSet):
         username = self.request.query_params.get('username', None)
         if username is not None:
             queryset = queryset.filter(username=username)
-            #user = queryset.get()
-            #print user.groups
-            #user.groups = [user.groups.all()]
         return queryset
 
 class AttendanceViewSet(viewsets.ModelViewSet):
@@ -50,65 +47,11 @@ class AttendanceViewSet(viewsets.ModelViewSet):
     serializer_class = AttendanceSerializer
 
 class AttendanceGraphViewDaily(APIView):
-
-
-# '''[{
-#   "label": "Serie1",
-#   "color": "#FFBE41",
-#   "data": [
-#     ["Jan", 56],
-#     ["Feb", 81],
-#     ["Mar", 97],
-#     ["Apr", 44],
-#     ["May", 24],
-#     ["Jun", 85],
-#     ["Jul", 94],
-#     ["Aug", 78],
-#     ["Sep", 52],
-#     ["Oct", 17],
-#     ["Nov", 90],
-#     ["Dec", 62]
-#   ]
-# }, {
-#   "label": "Serie2",
-#   "color": "#937fc7",
-#   "data": [
-#     ["Jan", 69],
-#     ["Feb", 135],
-#     ["Mar", 14],
-#     ["Apr", 100],
-#     ["May", 100],
-#     ["Jun", 62],
-#     ["Jul", 115],
-#     ["Aug", 22],
-#     ["Sep", 104],
-#     ["Oct", 132],
-#     ["Nov", 72],
-#     ["Dec", 61]
-#   ]
-# }, {
-#   "label": "Serie3",
-#   "color": "#00b4ff",
-#   "data": [
-#     ["Jan", 29],
-#     ["Feb", 36],
-#     ["Mar", 47],
-#     ["Apr", 21],
-#     ["May", 5],
-#     ["Jun", 49],
-#     ["Jul", 37],
-#     ["Aug", 44],
-#     ["Sep", 28],
-#     ["Oct", 9],
-#     ["Nov", 12],
-#     ["Dec", 35]
-#   ]
-# }]  '''
-
     renderer_classes = (JSONRenderer, )
     def get(self, request, format=None):
         main_object = dict()
         today = datetime.now().date()
+        print today
         tomorrow = today + timedelta(1)
         today_start = datetime.combine(today, time())
         today_end = datetime.combine(tomorrow, time())
@@ -118,8 +61,6 @@ class AttendanceGraphViewDaily(APIView):
         data_object_master = list()
         for s in queryset:
             data_object = list()
-            print s.student.username
-            print s.attendance
             if s.attendance == True or s.attendance == False:
                 val = 100
             else:
@@ -127,7 +68,6 @@ class AttendanceGraphViewDaily(APIView):
             data_object.append(s.student.username)
             data_object.append(val)
             data_object_master.append(data_object)
-        print data_object_master
 
         main_object = {"label": "Full Attendance","color": "green"}
         main_object.update({"data":data_object_master})
@@ -137,10 +77,7 @@ class AttendanceGraphViewDaily(APIView):
         data_object_master = list()
         for s in queryset:
             data_object = list()
-            print s.student.username
-            print s.attendance
             if s.attendance == False:
-                print "PARTIAL"
                 val = 50
             else:
                 val = 0
@@ -158,8 +95,6 @@ class AttendanceGraphViewDaily(APIView):
         data_object_master = list()
         for s in queryset:
             data_object = list()
-            print s.student.username
-            print s.attendance
             if s.attendance == None:
                 val = 100
             else:
@@ -167,7 +102,6 @@ class AttendanceGraphViewDaily(APIView):
             data_object.append(s.student.username)
             data_object.append(val)
             data_object_master.append(data_object)
-        print data_object_master
 
         main_object = {"label": "Absent","color": "red"}
         main_object.update({"data":data_object_master})
@@ -179,8 +113,6 @@ class AttendanceGraphViewDaily(APIView):
         god_set.append(super_master2)
         god_set.append(super_master3)
         data = json.dumps(god_set)
-        #data = serializers.serialize('json', data_object_master)
-        #data = [super_master]
         return HttpResponse(data, content_type="application/json")
 
 class CourseViewSet(viewsets.ModelViewSet):
