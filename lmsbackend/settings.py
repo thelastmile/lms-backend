@@ -137,19 +137,42 @@ REST_FRAMEWORK = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'tlm-backend-static'
+# AMAZON S3 (DISABLED)
 
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = 'tlm-backend-static'
 
-STATIC_URL = "//%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
-ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
-#STATIC_DIRECTORY = '/static/'
-MEDIA_DIRECTORY = '/media/'
+# STATIC_URL = "//%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
+# ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
+
+# MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
+# #STATIC_DIRECTORY = '/static/'
+# MEDIA_DIRECTORY = '/media/'
+
+# LOCAL FILESYSTEM (ENABLED)
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+STATIC_DIRECTORY = '/var/tlm-lms/static/'
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
+MEDIA_URL = 'media/'
+FILE_UPLOAD_PERMISSIONS = '0555'
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = '0555'
+FILE_UPLOAD_TEMP_DIR = '/tmp' # Docs show no trailing slash?  Silly Django
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600 #100MB
+
+# FILE PATHS, RELATIVE TO MEDIA_ROOT, With trailing slash only
+MEDIA_IMG = 'img/'
+MEDIA_PDF = 'pdf/'
+MEDIA_HTML ='html/'
+MEDIA_DOCS = 'docs/'
+MEDIA_MISC = 'misc/'
 
 # Import local settings
 try:
