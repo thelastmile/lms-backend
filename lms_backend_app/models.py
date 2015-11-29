@@ -149,6 +149,12 @@ class BinaryContent(models.Model):
     module = models.ForeignKey(Module)
     index_file = models.CharField(max_length=256,blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        ext = self.file.name.split(".")[-1].lower()
+        if ext.lower() == 'zip':
+            print "EXTRACT!!!!"
+        super(BinaryContent, self).save(*args, **kwargs) # Call the "real" save() method.
+
     def __unicode__(self):
         return '%s' % self.file
 

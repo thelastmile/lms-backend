@@ -12,3 +12,5 @@ AWS_SECRET_ACCESS_KEY = ''
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 MEDIA_ROOT = '%s/media/' % SETTINGS_PATH
+FILE_UPLOAD_PERMISSIONS = 0777
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0777
