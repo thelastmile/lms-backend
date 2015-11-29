@@ -2,6 +2,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from lms_backend_app.models import UserProfile, Course, CustomContentType, FeedbackType, CodeType, Question, Note, \
     Feedback, Module, BinaryContent, TextContent, Test, UnitTest, Choice, TestResult, Tag, Attendance
+from lmsbackend import settings
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,6 +65,11 @@ class ModuleSerializer(serializers.ModelSerializer):
 
 
 class BinaryContentSerializer(serializers.ModelSerializer):
+    file_url = serializers.SerializerMethodField('get_url')
+
+    def get_url(self, obj):
+        return obj.file.url
+
     class Meta:
         model = BinaryContent
 
