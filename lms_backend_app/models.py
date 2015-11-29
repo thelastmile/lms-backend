@@ -22,10 +22,18 @@ GOING TO USE DJANGO USER GROUPS FOR THE BASE USER MODEL - this is why you don't 
 
 class Course(models.Model):
     name = models.CharField(max_length=128)
+    description = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name
 
+class Module(models.Model):
+    name = models.CharField(max_length=128)
+    description = models.TextField()
+    course = models.ForeignKey(Course)
+
+    def __unicode__(self):
+        return self.name
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -111,15 +119,6 @@ class Feedback(models.Model):
     def __unicode__(self):
         return '%s %d' % (self.author, self.rating)
 
-
-class Module(models.Model):
-    name = models.CharField(max_length=128)
-    description = models.TextField()
-    course = models.ForeignKey(Course)
-
-    def __unicode__(self):
-        return self.name
-
 def upload_job_file_path(instance, filename):
     ext = filename.split(".")[-1].lower()
     if ext == 'pdf':
@@ -140,13 +139,15 @@ def upload_job_file_path(instance, filename):
     return '%s%s' % (settings.MEDIA_MISC, filename)
 
 class BinaryContent(models.Model):
+    name = models.CharField(max_length=256)
+    description = models.TextField(blank=True, null=True)
     content_type = models.ForeignKey(CustomContentType)
     file = models.FileField(upload_to=upload_job_file_path)
     module = models.ForeignKey(Module)
+    index_file = models.CharField(max_length=256,blank=True, null=True)
 
     def __unicode__(self):
         return '%s' % self.file
-
 
 class TextContent(models.Model):
     # (This is where the markdown will live. Increased to fit large lessons)
@@ -157,14 +158,12 @@ class TextContent(models.Model):
     def __unicode__(self):
         return self.content_type
 
-
 class Test(models.Model):
     question_list_selection = models.ManyToManyField(Question)
     created = models.DateTimeField(auto_created=True)
 
     def __unicode__(self):
         return self.question_list_selection
-
 
 class UnitTest(models.Model):
     unit_test = models.TextField()
@@ -174,14 +173,12 @@ class UnitTest(models.Model):
     def __unicode__(self):
         return self.unit_test
 
-
 class Choice(models.Model):
     question = models.ForeignKey(Question)
     choices = models.TextField()
 
     def __unicode__(self):
         return '%s : %s' % (self.question, self.choices)
-
 
 class TestResult(models.Model):
     score = models.IntegerField(default=0)
@@ -192,7 +189,6 @@ class TestResult(models.Model):
 
     def __unicode__(self):
         return self.score
-
 
 class Tag(models.Model):
     model = models.CharField(max_length=256)
