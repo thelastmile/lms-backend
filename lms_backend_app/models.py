@@ -4,6 +4,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from lmsbackend import settings
 import uuid
+import zipfile
+import os
 
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
@@ -148,11 +150,16 @@ class BinaryContent(models.Model):
     file = models.FileField(upload_to=upload_job_file_path)
     module = models.ForeignKey(Module)
     index_file = models.CharField(max_length=256,blank=True, null=True)
+    extracted_path = models.CharField(max_length=512,blank=True, null=True)
 
     def save(self, *args, **kwargs):
         ext = self.file.name.split(".")[-1].lower()
+        directoryname = '%s' % (uuid.uuid4())
         if ext.lower() == 'zip':
-            print "EXTRACT!!!!"
+            zfile = zipfile.ZipFile(self.file)
+            self.extracted_path = '%s%s/' % (settings.MEDIA_MISC, directoryname)
+            self.full_extracted_path = '%s%s' % (settings.MEDIA_ROOT,self.extracted_path)
+            zfile.extractall(self.full_extracted_path)
         super(BinaryContent, self).save(*args, **kwargs) # Call the "real" save() method.
 
     def __unicode__(self):
