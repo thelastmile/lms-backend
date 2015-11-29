@@ -168,7 +168,9 @@ FILE_UPLOAD_TEMP_DIR = '/tmp' # Docs show no trailing slash?  Silly Django
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600 #100MB
 
 # FILE PATHS, RELATIVE TO MEDIA_ROOT, With trailing slash only
+# These directories will be created if they don't exist
 MEDIA_IMG = 'img/'
+MEDIA_VIDEO = 'video/'
 MEDIA_PDF = 'pdf/'
 MEDIA_HTML ='html/'
 MEDIA_DOCS = 'docs/'
@@ -179,3 +181,26 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+# Make directories AFTER loading local_settings
+directory = '%s' % (MEDIA_ROOT)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_IMG)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_VIDEO)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_PDF)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_HTML)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
+if not os.path.exists(directory):
+    os.makedirs(directory)

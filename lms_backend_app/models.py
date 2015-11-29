@@ -121,8 +121,21 @@ class Module(models.Model):
         return self.name
 
 def upload_job_file_path(instance, filename):
-    if filename.split(".")[-1].lower() == 'pdf':
+    ext = filename.split(".")[-1].lower()
+    if ext == 'pdf':
         return '%s%s' % (settings.MEDIA_PDF, filename)
+
+    if ext == 'html' or ext == 'htm' :
+        return '%s%s' % (settings.MEDIA_HTML, filename)
+
+    if ext == 'jpg' or ext == 'png' or ext == 'jpeg' or ext == 'svg':
+        return '%s%s' % (settings.MEDIA_IMG, filename)
+
+    if ext == 'jpg' or ext == 'png' or ext == 'jpeg' or ext == 'svg':
+        return '%s%s' % (settings.MEDIA_IMG, filename)
+
+    if ext == 'mp4' or ext == 'mpg' or ext == 'mkv' or ext == 'avi':
+        return '%s%s' % (settings.MEDIA_VIDEO, filename)
 
     return '%s%s' % (settings.MEDIA_MISC, filename)
 

@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from datetime import datetime, timedelta, time
 from django.core import serializers
 import json
+from rest_framework.decorators import detail_route
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -119,71 +120,57 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
-
 class CustomContentTypeViewSet(viewsets.ModelViewSet):
     queryset = CustomContentType.objects.all()
     serializer_class = CustomContentTypeSerializer
-
 
 class FeedbackTypeViewSet(viewsets.ModelViewSet):
     queryset = FeedbackType.objects.all()
     serializer_class = FeedbackTypeSerializer
 
-
 class CodeTypeViewSet(viewsets.ModelViewSet):
     queryset = CodeType.objects.all()
     serializer_class = CodeTypeSerializer
-
 
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
-
 class NoteViewSet(viewsets.ModelViewSet):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
-
 
 class FeedbackViewSet(viewsets.ModelViewSet):
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
 
-
 class ModuleViewSet(viewsets.ModelViewSet):
     queryset = Module.objects.all()
     serializer_class = ModuleSerializer
-
 
 class BinaryContentViewSet(viewsets.ModelViewSet):
     queryset = BinaryContent.objects.all()
     serializer_class = BinaryContentSerializer
 
-
 class TextContentViewSet(viewsets.ModelViewSet):
     queryset = TextContent.objects.all()
     serializer_class = TextContentSerializer
-
 
 class TestViewSet(viewsets.ModelViewSet):
     queryset = Test.objects.all()
     serializer_class = TestSerializer
 
-
 class UnitTestViewSet(viewsets.ModelViewSet):
     queryset = UnitTest.objects.all()
     serializer_class = UnitTestSerializer
-
 
 class ChoiceViewSet(viewsets.ModelViewSet):
     queryset = Choice.objects.all()
     serializer_class = ChoiceSerializer
 
-
 class TestResultViewSet(viewsets.ModelViewSet):
     queryset = TestResult.objects.all()
     serializer_class = TestResultSerializer
-
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
