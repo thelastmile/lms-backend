@@ -38,3 +38,15 @@ Enter your user credentials that were created
 Add the group `Super Admin` to your admin user
 
 Create a separate user that will belong to each group for full testing spectrum
+
+###Getting the latest updates
+```
+cd <appdir>
+git checkout master
+git pull
+python manage.py syncdb --noinput
+python manage.py migrate
+./manage.py loaddata initial_data__groups
+./manage.py loaddata initial_data__customcontenttypes
+./manage.py loaddata initial_data__courses
+```
