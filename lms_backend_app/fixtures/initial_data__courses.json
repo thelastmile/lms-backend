@@ -1,0 +1,1 @@
+[{"fields": {"name": "Level 1", "description": "Level 1 Students"}, "model": "lms_backend_app.course", "pk": 1}, {"fields": {"name": "Level 2", "description": "Level 2 Students"}, "model": "lms_backend_app.course", "pk": 2}]

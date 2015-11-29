@@ -21,6 +21,7 @@ python manage.py syncdb --noinput
 python manage.py migrate
 ./manage.py loaddata initial_data__groups
 ./manage.py loaddata initial_data__customcontenttypes
+./manage.py loaddata initial_data__courses
 python manage.py createsuperuser
 cp local_settings.example.py local_settings.py
 ```
