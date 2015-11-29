@@ -7,7 +7,14 @@ git clone git@github.com:thelastmile/lms-backend.git
 cd lms-backend
 ```
 
-###Setup Virtual Environment
+###Setup Virtual Environment For DEV
+```
+virtualenv venv
+. venv/bin/activate
+pip install -r requirements-dev.txt
+```
+
+###Setup Virtual Environment For PROD
 ```
 virtualenv venv
 . venv/bin/activate
