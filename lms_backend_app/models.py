@@ -3,6 +3,7 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from lmsbackend import settings
+import uuid
 
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
@@ -121,6 +122,8 @@ class Feedback(models.Model):
 
 def upload_job_file_path(instance, filename):
     ext = filename.split(".")[-1].lower()
+    # change the filename to guid
+    filename = '%s.%s' % (uuid.uuid4(),ext)
     if ext == 'pdf':
         return '%s%s' % (settings.MEDIA_PDF, filename)
 
