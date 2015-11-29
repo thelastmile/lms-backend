@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from lmsbackend import settings
 
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
@@ -119,14 +120,19 @@ class Module(models.Model):
     def __unicode__(self):
         return self.name
 
+def upload_job_file_path(instance, filename):
+    if filename.split(".")[-1].lower() == 'pdf':
+        return '%s%s' % (settings.MEDIA_PDF, filename)
+
+    return '%s%s' % (settings.MEDIA_MISC, filename)
 
 class BinaryContent(models.Model):
-    content_type = models.ForeignKey(ContentType, default='BinaryContent')
-    link = models.FileField()
+    content_type = models.ForeignKey(CustomContentType)
+    file = models.FileField(upload_to=upload_job_file_path)
     module = models.ForeignKey(Module)
 
     def __unicode__(self):
-        return self.content_type
+        return '%s' % self.file
 
 
 class TextContent(models.Model):

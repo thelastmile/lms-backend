@@ -161,9 +161,9 @@ STATIC_DIRECTORY = '/var/tlm-lms/static/'
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
-MEDIA_URL = 'media/'
-FILE_UPLOAD_PERMISSIONS = '0555'
-FILE_UPLOAD_DIRECTORY_PERMISSIONS = '0555'
+MEDIA_URL = '/media/'
+FILE_UPLOAD_PERMISSIONS = 0555
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0555
 FILE_UPLOAD_TEMP_DIR = '/tmp' # Docs show no trailing slash?  Silly Django
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600 #100MB
 

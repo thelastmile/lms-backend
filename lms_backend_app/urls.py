@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from . import views
 from .api.views import *
 from rest_framework import routers
+from django.conf.urls.static import static
 
 # API router set up
 router = routers.DefaultRouter()
@@ -31,4 +32,5 @@ urlpatterns = [
 	url(r'^api/', include(router.urls)),
 	url(r'^$', views.index, name='index'),
 	url(r'^api/attendancegraphdaily/$', AttendanceGraphViewDaily.as_view()),
-]
+	#url(r'^api/binarycontent/$', BinaryContentView.as_view()),
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
