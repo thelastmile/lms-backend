@@ -52,7 +52,6 @@ class AttendanceGraphViewDaily(APIView):
     def get(self, request, format=None):
         main_object = dict()
         today = datetime.now().date()
-        print today
         tomorrow = today + timedelta(1)
         today_start = datetime.combine(today, time())
         today_end = datetime.combine(tomorrow, time())
@@ -85,7 +84,6 @@ class AttendanceGraphViewDaily(APIView):
             data_object.append(s.student.username)
             data_object.append(val)
             data_object_master.append(data_object)
-        print data_object_master
 
         main_object = {"label": "Half Attendance","color": "yellow"}
         main_object.update({"data":data_object_master})

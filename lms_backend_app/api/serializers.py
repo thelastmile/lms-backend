@@ -3,6 +3,7 @@ from rest_framework import serializers
 from lms_backend_app.models import UserProfile, Course, CustomContentType, FeedbackType, CodeType, Question, Note, \
     Feedback, Module, BinaryContent, TextContent, Test, UnitTest, Choice, TestResult, Tag, Attendance
 from lmsbackend import settings
+import os
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -66,9 +67,22 @@ class ModuleSerializer(serializers.ModelSerializer):
 
 class BinaryContentSerializer(serializers.ModelSerializer):
     file_url = serializers.SerializerMethodField('get_url')
+    directory_contents = serializers.SerializerMethodField('get_dir_structure')
 
     def get_url(self, obj):
         return obj.file.url
+
+    def get_dir_structure(self, obj):
+        path = '%s%s' % (settings.MEDIA_ROOT,obj.extracted_path)
+        if path:
+            extracted_path_html = ''
+            for path, dirs, files in os.walk(path):
+              extracted_path_html = '<div class="files-dir">%s</div>%s' % (path,extracted_path_html)
+              for f in files:
+                extracted_path_html = '<div class="files-file">%s</div>%s' % (f,extracted_path_html)
+            return extracted_path_html
+        else:
+            return '<div>Directory appears empty or incorrect.</div>'
 
     class Meta:
         model = BinaryContent
