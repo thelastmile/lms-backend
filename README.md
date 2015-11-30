@@ -58,7 +58,7 @@ Create a separate user that will belong to each group for full testing spectrum
 ###Getting the latest updates
 ```
 cd <appdir>
-. venv/bin/activate/
+. venv/bin/activate
 git checkout master
 git pull
 python manage.py syncdb --noinput
