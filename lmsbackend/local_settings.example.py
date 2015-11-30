@@ -1,3 +1,6 @@
+import os
+SETTINGS_PATH = os.path.dirname(os.path.abspath(__file__))
+
 email_host_user = ''
 email_host = ''
 email_port = 587
