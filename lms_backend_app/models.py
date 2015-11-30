@@ -153,13 +153,14 @@ class BinaryContent(models.Model):
     extracted_path = models.CharField(max_length=512,blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        ext = self.file.name.split(".")[-1].lower()
-        directoryname = '%s' % (uuid.uuid4())
-        if ext.lower() == 'zip':
-            zfile = zipfile.ZipFile(self.file)
-            self.extracted_path = '%s%s/' % (settings.MEDIA_MISC, directoryname)
-            self.full_extracted_path = '%s%s' % (settings.MEDIA_ROOT,self.extracted_path)
-            zfile.extractall(self.full_extracted_path)
+        if self.pk is None:
+            ext = self.file.name.split(".")[-1].lower()
+            directoryname = '%s' % (uuid.uuid4())
+            if ext.lower() == 'zip':
+                zfile = zipfile.ZipFile(self.file)
+                self.extracted_path = '%s%s/' % (settings.MEDIA_MISC, directoryname)
+                self.full_extracted_path = '%s%s' % (settings.MEDIA_ROOT,self.extracted_path)
+                zfile.extractall(self.full_extracted_path)
         super(BinaryContent, self).save(*args, **kwargs) # Call the "real" save() method.
 
     def __unicode__(self):
