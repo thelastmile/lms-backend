@@ -79,7 +79,7 @@ class BinaryContentSerializer(serializers.ModelSerializer):
             for path, dirs, files in os.walk(path):
               extracted_path_html = '<div class="files-dir">%s</div>%s' % (path,extracted_path_html)
               for f in files:
-                extracted_path_html = '<a class="files-file">%s</a>%s' % (f,extracted_path_html)
+                extracted_path_html = '<a class="files-file" ng-click="ALC.LFILEselectIndexPath()" value="%s">%s</a>%s' % (f,f,extracted_path_html)
             return extracted_path_html
         else:
             return '<div>Directory appears empty or incorrect.</div>'
