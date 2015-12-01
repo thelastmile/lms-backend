@@ -1,5 +1,9 @@
 # lms-backend
 
+###Prerequisites
+
+* python 2.7
+* postgres installed locally
 
 ###Installation
 ```
