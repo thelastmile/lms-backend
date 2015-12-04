@@ -88,6 +88,15 @@ class BinaryContentSerializer(serializers.ModelSerializer):
     class Meta:
         model = BinaryContent
 
+class BinaryContentSerializerLite(serializers.ModelSerializer):
+    file_url = serializers.SerializerMethodField('get_url')
+
+    def get_url(self, obj):
+        return obj.file.url
+
+    class Meta:
+        model = BinaryContent
+        fields = ('id', 'name', 'description','file','index_file','file_url')
 
 class TextContentSerializer(serializers.ModelSerializer):
     class Meta:
