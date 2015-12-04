@@ -31,9 +31,7 @@ pip install -r requirements.txt
 cp local_settings.example.py local_settings.py
 python manage.py syncdb --noinput
 python manage.py migrate
-./manage.py loaddata initial_data__groups
-./manage.py loaddata initial_data__customcontenttypes
-./manage.py loaddata initial_data__courses
+./manage.py loaddata initial_data
 python manage.py createsuperuser
 ```
 
@@ -67,7 +65,5 @@ git checkout master
 git pull
 python manage.py syncdb --noinput
 python manage.py migrate
-./manage.py loaddata initial_data__groups
-./manage.py loaddata initial_data__customcontenttypes
-./manage.py loaddata initial_data__courses
+./manage.py loaddata initial_data
 ```
