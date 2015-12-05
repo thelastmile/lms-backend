@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from lms_backend_app import urls as lms_backend_app_urls
-from rest_framework.authtoken import views
+from lms_backend_app.api import views
 
 urlpatterns = [
     # Examples:
