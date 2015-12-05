@@ -11,6 +11,14 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     groups = GroupSerializer(many=True)
+    course = serializers.SerializerMethodField()
+    inmate_id = serializers.SerializerMethodField()
+
+    def get_course(self, obj):
+        temp_course = UserProfile.objects.get(user=obj).course.name
+
+    def get_inmate_id(self,obj):
+        temp_id = UserProfile.objects.get(user=obj).inmate_id
 
     class Meta:
         model = User
