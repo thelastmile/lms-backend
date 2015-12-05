@@ -15,10 +15,10 @@ class UserSerializer(serializers.ModelSerializer):
     inmate_id = serializers.SerializerMethodField()
 
     def get_course(self, obj):
-        return UserProfile.objects.get(user=obj).course.name
+        return UserProfile.objects.get_or_create(user=obj).course.name
 
     def get_inmate_id(self,obj):
-        return UserProfile.objects.get(user=obj).inmate_id
+        return UserProfile.objects.get_or_create(user=obj).inmate_id
 
     class Meta:
         model = User

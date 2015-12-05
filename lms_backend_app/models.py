@@ -40,7 +40,7 @@ class Module(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    course = models.ForeignKey(Course)
+    course = models.ForeignKey(Course, blank=True, null=True)
     inmate_id = models.TextField()
 
     def __unicode__(self):
