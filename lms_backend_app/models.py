@@ -38,9 +38,13 @@ class Module(models.Model):
     def __unicode__(self):
         return self.name
 
+def get_image_path(instance, filename):
+    return os.path.join('photos', str(instance.id), filename)
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     course = models.ForeignKey(Course, blank=True, null=True)
+    profile_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     inmate_id = models.TextField()
 
     def __unicode__(self):
