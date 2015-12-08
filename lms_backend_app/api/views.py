@@ -27,7 +27,16 @@ class ObtainAuthToken(APIView):
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         user_serializer = UserSerializer(user)
+        self.get_or_create_user_profile(user)
         return Response({'token': token.key, 'user': user_serializer.data})
+
+    def get_or_create_user_profile(self, user):
+        profile = None
+        try:
+            profile = UserProfile.objects.get(user=user)
+        except UserProfile.DoesNotExist:
+            profile = UserProfile.objects.create(user=user)
+        return profile
 
 
 obtain_auth_token = ObtainAuthToken.as_view()
