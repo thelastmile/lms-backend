@@ -134,6 +134,10 @@ class AttendanceGraphViewDaily(APIView):
         data = json.dumps(god_set)
         return HttpResponse(data, content_type="application/json")
 
+class CodeViewSet(viewsets.ModelViewSet):
+    queryset = Code.objects.all()
+    serializer_class = CodeSerializer
+
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer

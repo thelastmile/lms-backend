@@ -75,12 +75,14 @@ class CodeType(models.Model):
         return self.name
 
 class Code(models.Model):
+    student = models.ForeignKey(User)
     name = models.CharField(max_length=256)
     code = models.TextField(blank=True, null=True)
     html = models.TextField(blank=True, null=True)
     css = models.TextField(blank=True, null=True)
     tests = models.TextField(blank=True, null=True)
     code_type = models.ForeignKey(CodeType,blank=True, null=True)
+    module = models.ForeignKey(Module, blank=True, null=True)
 
     def __unicode__(self):
         return self.name

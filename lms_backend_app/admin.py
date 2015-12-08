@@ -5,6 +5,7 @@ from .models import *
 admin.site.register(UserProfile)
 admin.site.register(Course)
 admin.site.register(Attendance)
+admin.site.register(Code)
 admin.site.register(CustomContentType)
 admin.site.register(FeedbackType)
 admin.site.register(CodeType)
