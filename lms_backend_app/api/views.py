@@ -13,6 +13,7 @@ from datetime import datetime, timedelta, time
 from django.core import serializers
 import json
 from rest_framework.decorators import detail_route
+from django.db.models import Q
 
 class ObtainAuthToken(APIView):
     throttle_classes = ()
@@ -66,7 +67,7 @@ class StudentViewSet(viewsets.ModelViewSet):
         Optionally restricts the returned set to a given user,
         by filtering against a `username` query parameter in the URL.
         """
-        queryset = User.objects.filter(groups__name='Inmate')
+        queryset = User.objects.filter(Q(groups__name='Student') | Q(groups__name='Inmate'))
         username = self.request.query_params.get('username', None)
         if username is not None:
             queryset = queryset.filter(username=username)
