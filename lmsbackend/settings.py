@@ -175,6 +175,7 @@ MEDIA_PDF = 'pdf/'
 MEDIA_HTML ='html/'
 MEDIA_DOCS = 'docs/'
 MEDIA_MISC = 'misc/'
+MEDIA_PHOTOS = 'photos/'
 
 # Import local settings
 try:
@@ -202,5 +203,8 @@ directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
 if not os.path.exists(directory):
     os.makedirs(directory)
 directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
 if not os.path.exists(directory):
     os.makedirs(directory)

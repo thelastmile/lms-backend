@@ -13,6 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
     groups = GroupSerializer(many=True)
     course = serializers.SerializerMethodField()
     inmate_id = serializers.SerializerMethodField()
+    profile_image = serializers.SerializerMethodField()
 
     def get_course(self, obj):
         profile, created = UserProfile.objects.get_or_create(user=obj)
@@ -22,9 +23,11 @@ class UserSerializer(serializers.ModelSerializer):
 
     def get_inmate_id(self,obj):
         profile, created = UserProfile.objects.get_or_create(user=obj)
-        if profile.course != None:
-            return profile.inmate_id
-        return None
+        return profile.inmate_id
+
+    def get_profile_image(self,obj):
+        profile, created = UserProfile.objects.get_or_create(user=obj)
+        return profile.profile_image.name
 
     class Meta:
         model = User

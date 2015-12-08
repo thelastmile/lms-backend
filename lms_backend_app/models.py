@@ -39,7 +39,7 @@ class Module(models.Model):
         return self.name
 
 def get_image_path(instance, filename):
-    return os.path.join('photos', str(instance.id), filename)
+    return os.path.join(settings.MEDIA_PHOTOS, str(instance.id), filename)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -48,7 +48,7 @@ class UserProfile(models.Model):
     inmate_id = models.TextField()
 
     def __unicode__(self):
-        return self.user.first_name
+        return '%s %s' % (self.user.first_name,self.user.last_name)
 
 ATTENDANCE_CHOICES = (
     (None, "Student Not Present"),
