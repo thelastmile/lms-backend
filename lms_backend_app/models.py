@@ -68,13 +68,22 @@ class CustomContentType(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class CodeType(models.Model):
     name = models.CharField(max_length=256)
 
     def __unicode__(self):
         return self.name
 
+class Code(models.Model):
+    name = models.CharField(max_length=256)
+    code = models.TextField(blank=True, null=True)
+    html = models.TextField(blank=True, null=True)
+    css = models.TextField(blank=True, null=True)
+    tests = models.TextField(blank=True, null=True)
+    code_type = models.ForeignKey(CodeType,blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
 
 class Question(models.Model):
     # can pertain to a module or test
