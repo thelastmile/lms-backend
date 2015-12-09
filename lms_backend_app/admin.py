@@ -17,7 +17,6 @@ class MyUserAdmin(UserAdmin):
 admin.site.unregister(User)
 admin.site.register(User, MyUserAdmin)
 
-admin.site.register(UserProfile)
 admin.site.register(Course)
 admin.site.register(Attendance)
 admin.site.register(Code)

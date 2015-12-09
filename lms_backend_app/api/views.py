@@ -54,13 +54,10 @@ class UserViewSet(viewsets.ModelViewSet):
         username = self.request.query_params.get('username', None)
         if username is not None:
             queryset = queryset.filter(username=username)
-            #user = queryset.get()
-            #print user.groups
-            #user.groups = [user.groups.all()]
         return queryset
 
 class StudentViewSet(viewsets.ModelViewSet):
-    serializer_class = StudentSerializer
+    serializer_class = UserSerializer
 
     def get_queryset(self):
         """

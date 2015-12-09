@@ -32,12 +32,6 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
 
-class StudentSerializer(serializers.ModelSerializer):
-    groups = GroupSerializer(many=True)
-
-    class Meta:
-        model = User
-
 class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendance
