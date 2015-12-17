@@ -103,7 +103,7 @@ class BinaryContentSerializerLite(serializers.ModelSerializer):
 
     class Meta:
         model = BinaryContent
-        fields = ('id', 'name', 'description','file','index_file','file_url')
+        fields = ('id', 'name', 'description','file','index_file','file_url','thumbnail')
 
 class TextContentSerializer(serializers.ModelSerializer):
     class Meta:
