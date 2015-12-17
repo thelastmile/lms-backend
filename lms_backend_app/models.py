@@ -159,6 +159,10 @@ def upload_job_file_path(instance, filename):
 
     return '%s%s' % (settings.MEDIA_MISC, filename)
 
+
+def get_content_tn_path(instance, filename):
+    return os.path.join(settings.MEDIA_CONTENT_THUMBNAILS, str(instance.id), filename)
+
 class BinaryContent(models.Model):
     name = models.CharField(max_length=256)
     description = models.TextField(blank=True, null=True)
@@ -167,6 +171,7 @@ class BinaryContent(models.Model):
     module = models.ForeignKey(Module)
     index_file = models.CharField(max_length=256,blank=True, null=True)
     extracted_path = models.CharField(max_length=512,blank=True, null=True)
+    thumbnail = models.ImageField(upload_to=get_content_tn_path, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if self.pk is None:

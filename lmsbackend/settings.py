@@ -176,6 +176,7 @@ MEDIA_HTML ='html/'
 MEDIA_DOCS = 'docs/'
 MEDIA_MISC = 'misc/'
 MEDIA_PHOTOS = 'photos/'
+MEDIA_CONTENT_THUMBNAILS = 'content_thumbnails/'
 
 # Import local settings
 try:
@@ -206,5 +207,8 @@ directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
 if not os.path.exists(directory):
     os.makedirs(directory)
 directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_CONTENT_THUMBNAILS)
 if not os.path.exists(directory):
     os.makedirs(directory)
