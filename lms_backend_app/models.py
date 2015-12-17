@@ -234,3 +234,10 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return self.tags
+
+class Setting(models.Model):
+    name = models.CharField(max_length=50)
+    value = models.TextField()
+
+    def __unicode__(self):
+        return self.name

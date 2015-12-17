@@ -26,6 +26,7 @@ router.register(r'unittest', UnitTestViewSet, base_name='unittest')
 router.register(r'choice', ChoiceViewSet, base_name='choice')
 router.register(r'testresult', TestResultViewSet, base_name='testresult')
 router.register(r'tag', TagViewSet, base_name='tag')
+router.register(r'setting', SettingViewSet, base_name='setting')
 
 
 # just general index and api setup for now

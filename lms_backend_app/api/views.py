@@ -236,3 +236,17 @@ class TestResultViewSet(viewsets.ModelViewSet):
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
+class SettingViewSet(viewsets.ModelViewSet):
+    serializer_class = SettingSerializer
+    queryset = Setting.objects.all()
+    def get_queryset(self):
+        """
+        Optionally restricts the returned set to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Setting.objects.all()
+        setting_name = self.request.query_params.get('name', None)
+        if setting_name is not None:
+            queryset = queryset.filter(name=setting_name)
+        return queryset
