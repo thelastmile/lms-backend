@@ -6,6 +6,7 @@ from lmsbackend import settings
 import uuid
 import zipfile
 import os
+from django.utils import timezone
 
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
@@ -60,7 +61,7 @@ class Attendance(models.Model):
     student = models.ForeignKey(User, related_name='student')
     instructor = models.ForeignKey(User, related_name='instructor')
     attendance = models.NullBooleanField(choices = ATTENDANCE_CHOICES)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=timezone.now)
 
     def __unicode__(self):
         return '%s %s' % (self.student, self.date)
@@ -110,10 +111,10 @@ class Note(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
-    # ADD DATETIME
+    date = models.DateTimeField(default=timezone.now)
 
     def __unicode__(self):
-        return self.title
+        return "%s %s %s %s" % (self.date,self.author.first_name,self.author.last_name,self.title)
 
 
 class FeedbackType(models.Model):
@@ -218,6 +219,7 @@ class TestResult(models.Model):
     student = models.ForeignKey(UserProfile)
     instructor = models.OneToOneField(User, primary_key= False)
     question_list_selection = models.ManyToManyField(Question)
+    date = models.DateTimeField(default=timezone.now)
 
     def __unicode__(self):
         return self.score
