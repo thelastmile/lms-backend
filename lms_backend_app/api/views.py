@@ -210,8 +210,12 @@ class BinaryContentViewSetLite(viewsets.ModelViewSet):
             queryset = queryset.filter(module__id=module)
 
         content_type = self.request.query_params.get('content_type', None)
-        if content_type is not None:
+        if content_type is not None and content_type != '5':
             queryset = queryset.filter(content_type__id=content_type)
+        elif content_type == '5':
+            queryset = BinaryContent.objects.filter(is_global=True).order_by('content_type')
+            print content_type
+            print "HERE"
         return queryset
 
 class TextContentViewSet(viewsets.ModelViewSet):
