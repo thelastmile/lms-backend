@@ -240,12 +240,11 @@ class TagViewSet(viewsets.ModelViewSet):
 
 class SettingViewSet(viewsets.ModelViewSet):
     serializer_class = SettingSerializer
+    # create defaults
+    Setting.objects.get_or_create(name="HomeContent")
     queryset = Setting.objects.all()
+
     def get_queryset(self):
-        """
-        Optionally restricts the returned set to a given user,
-        by filtering against a `username` query parameter in the URL.
-        """
         queryset = Setting.objects.all()
         setting_name = self.request.query_params.get('name', None)
         if setting_name is not None:
