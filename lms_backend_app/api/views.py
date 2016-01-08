@@ -80,23 +80,23 @@ class AttendanceGraphViewDaily(APIView):
         main_object = dict()
         today = datetime.now().date()
         tomorrow = today + timedelta(1)
-        today_start = datetime.combine(today, time())
+        today_start = datetime.combine(today, time(hour=0, minute=0, second=0))
         today_end = datetime.combine(tomorrow, time())
-        queryset = Attendance.objects.filter(date__gte=today_start,student__groups__name='Inmate').only('student','date','attendance')
+        queryset = Attendance.objects.filter(date__gte=today_start,student__groups__name='Student').only('student','date','attendance')
 
         super_master = dict()
         data_object_master = list()
         for s in queryset:
             data_object = list()
-            if s.attendance == True or s.attendance == False:
+            if s.attendance == True:
                 val = 100
             else:
                 val = 0
-            data_object.append(s.student.username)
+            data_object.append("%s %s" % (s.student.first_name,s.student.last_name))
             data_object.append(val)
             data_object_master.append(data_object)
 
-        main_object = {"label": "Full Attendance","color": "green"}
+        main_object = {"label": "In Attendance","color": "#2E90B3"}
         main_object.update({"data":data_object_master})
         super_master.update(main_object)
 
@@ -108,11 +108,12 @@ class AttendanceGraphViewDaily(APIView):
                 val = 50
             else:
                 val = 0
-            data_object.append(s.student.username)
+            data_object.append("%s %s" % (s.student.first_name,s.student.last_name))
             data_object.append(val)
             data_object_master.append(data_object)
 
-        main_object = {"label": "Half Attendance","color": "yellow"}
+        main_object = {"label": "","color": "#2E90B3"}
+        #main_object = {"label": "Half Attendance","color": "#2E90B3"}
         main_object.update({"data":data_object_master})
 
         super_master2.update(main_object)
@@ -122,10 +123,10 @@ class AttendanceGraphViewDaily(APIView):
         for s in queryset:
             data_object = list()
             if s.attendance == None:
-                val = 100
+                val = 5
             else:
                 val = 0
-            data_object.append(s.student.username)
+            data_object.append("%s %s" % (s.student.first_name,s.student.last_name))
             data_object.append(val)
             data_object_master.append(data_object)
 

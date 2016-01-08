@@ -168,7 +168,8 @@ class BinaryContent(models.Model):
     description = models.TextField(blank=True, null=True)
     content_type = models.ForeignKey(CustomContentType)
     file = models.FileField(upload_to=upload_job_file_path)
-    module = models.ForeignKey(Module)
+    module = models.ForeignKey(Module,blank=True, null=True)
+    is_global = models.NullBooleanField();
     index_file = models.CharField(max_length=256,blank=True, null=True)
     extracted_path = models.CharField(max_length=512,blank=True, null=True)
     thumbnail = models.ImageField(upload_to=get_content_tn_path, blank=True, null=True)
@@ -242,7 +243,7 @@ class Tag(models.Model):
 
 class Setting(models.Model):
     name = models.CharField(max_length=50)
-    value = models.TextField()
+    value = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name
