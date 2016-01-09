@@ -7,6 +7,7 @@ import uuid
 import zipfile
 import os
 from django.utils import timezone
+from jsonfield import JSONField
 
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
@@ -211,6 +212,19 @@ class UnitTest(models.Model):
 
     def __unicode__(self):
         return self.unit_test
+
+class CodeTestInstructionsJSON(models.Model):
+    title = models.CharField(max_length=50)
+    json = JSONField(blank=True, null=True)
+    module = models.ForeignKey(Module,blank=True, null=True)
+    code_type = models.ForeignKey(CodeType,blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'JSON Test with Instructions'
+        verbose_name_plural = 'JSON Tests with Instructions'
+
+    def __unicode__(self):
+        return self.title
 
 class Choice(models.Model):
     question = models.ForeignKey(Question)
