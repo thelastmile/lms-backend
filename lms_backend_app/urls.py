@@ -27,6 +27,7 @@ router.register(r'choice', ChoiceViewSet, base_name='choice')
 router.register(r'testresult', TestResultViewSet, base_name='testresult')
 router.register(r'tag', TagViewSet, base_name='tag')
 router.register(r'setting', SettingViewSet, base_name='setting')
+router.register(r'jsoncode', CodeTestInstructionsJSONViewSet, base_name='setting')
 
 
 # just general index and api setup for now

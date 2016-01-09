@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from lms_backend_app.models import UserProfile, Course, CustomContentType, FeedbackType, CodeType, Question, Note, \
-    Feedback, Module, BinaryContent, TextContent, Test, UnitTest, Choice, TestResult, Tag, Attendance, Code, Setting
+    Feedback, Module, BinaryContent, TextContent, Test, UnitTest, Choice, TestResult, Tag, Attendance, Code, Setting, \
+    CodeTestInstructionsJSON
 from lmsbackend import settings
 import os
 
@@ -132,3 +133,7 @@ class TagSerializer(serializers.ModelSerializer):
 class SettingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Setting
+
+class CodeTestInstructionsJSONSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CodeTestInstructionsJSON

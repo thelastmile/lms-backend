@@ -254,3 +254,7 @@ class SettingViewSet(viewsets.ModelViewSet):
         if setting_name is not None:
             queryset = queryset.filter(name=setting_name)
         return queryset
+
+class CodeTestInstructionsJSONViewSet(viewsets.ModelViewSet):
+    queryset = CodeTestInstructionsJSON.objects.all()
+    serializer_class = CodeTestInstructionsJSONSerializer
