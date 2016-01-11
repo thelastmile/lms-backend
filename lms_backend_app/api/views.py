@@ -218,6 +218,27 @@ class BinaryContentViewSetLite(viewsets.ModelViewSet):
             print "HERE"
         return queryset
 
+class BinaryContentViewSetUltraLite(viewsets.ModelViewSet):
+    serializer_class = BinaryContentSerializerUltraLite
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned set to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = BinaryContent.objects.all()
+        module = self.request.query_params.get('module', None)
+        if module is not None:
+            queryset = queryset.filter(module__id=module)
+
+        content_type = self.request.query_params.get('content_type', None)
+        if content_type is not None and content_type != '5':
+            queryset = queryset.filter(content_type__id=content_type)
+        elif content_type == '5':
+            queryset = BinaryContent.objects.filter(is_global=True).order_by('content_type')
+            print content_type
+        return queryset
+
 class TextContentViewSet(viewsets.ModelViewSet):
     queryset = TextContent.objects.all()
     serializer_class = TextContentSerializer
