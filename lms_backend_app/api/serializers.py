@@ -5,6 +5,7 @@ from lms_backend_app.models import UserProfile, Course, CustomContentType, Feedb
     CodeTestInstructionsJSON
 from lmsbackend import settings
 import os
+import json
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -146,5 +147,10 @@ class SettingSerializer(serializers.ModelSerializer):
         model = Setting
 
 class CodeTestInstructionsJSONSerializer(serializers.ModelSerializer):
+    json = serializers.SerializerMethodField('get_json_clean')
+
+    def get_json_clean(self, obj):
+        return json.loads(json.dumps(obj.json))
+
     class Meta:
         model = CodeTestInstructionsJSON
