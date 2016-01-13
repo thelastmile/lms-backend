@@ -137,31 +137,33 @@ REST_FRAMEWORK = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-# AMAZON S3 (DISABLED)
-
-# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-# AWS_STORAGE_BUCKET_NAME = 'tlm-backend-static'
-
-# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-# STATIC_URL = "//%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
-# ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
-
-# MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
-# #STATIC_DIRECTORY = '/static/'
-# MEDIA_DIRECTORY = '/media/'
-
-# LOCAL FILESYSTEM (ENABLED)
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
-STATIC_DIRECTORY = '/var/tlm-lms/static/'
+# AMAZON S3
 STATIC_URL = '/static/'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'lms-backend-static-dev'
 
-MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
-MEDIA_URL = '/media/'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+STATIC_URL = "//%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
+ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
+
+MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
+#STATIC_DIRECTORY = '/static/'
+MEDIA_DIRECTORY = '/media/'
+
+# LOCAL FILESYSTEM (DISABLED)
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+# STATIC_DIRECTORY = '/var/tlm-lms/static/'
+# STATIC_URL = '/static/'
+
+# MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
+# MEDIA_URL = '/media/'
+
+# File upload perms
 FILE_UPLOAD_PERMISSIONS = 0555
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0555
 FILE_UPLOAD_TEMP_DIR = '/tmp' # Docs show no trailing slash?  Silly Django
@@ -185,30 +187,32 @@ except ImportError:
     pass
 
 # Make directories AFTER loading local_settings
-directory = '%s' % (MEDIA_ROOT)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_IMG)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_VIDEO)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_PDF)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_HTML)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_CONTENT_THUMBNAILS)
-if not os.path.exists(directory):
-    os.makedirs(directory)
+
+# Create our file directories
+# directory = '%s' % (MEDIA_ROOT)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_IMG)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_VIDEO)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_PDF)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_HTML)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_CONTENT_THUMBNAILS)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
