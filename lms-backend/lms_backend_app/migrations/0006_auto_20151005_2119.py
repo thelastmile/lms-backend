@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='binarycontent',
             name='content_type',
-            field=models.ForeignKey(default=b'BinaryContent', to='contenttypes.ContentType'),
+            field=models.ForeignKey(to='contenttypes.ContentType', null=True),
         ),
         migrations.AlterField(
             model_name='feedback',
