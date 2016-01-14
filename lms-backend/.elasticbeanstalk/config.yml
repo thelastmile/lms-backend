@@ -1,8 +1,6 @@
 branch-defaults:
-  ebdeployment:
-    environment: lms-backend-dev
   master:
-    environment: lms-backend-dev-env
+    environment: tlm-lms-backend
     group_suffix: null
 global:
   application_name: lms-backend
