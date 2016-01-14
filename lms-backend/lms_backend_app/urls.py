@@ -38,4 +38,4 @@ urlpatterns = [
 	url(r'^$', views.index, name='index'),
 	url(r'^api/attendancegraphdaily/$', AttendanceGraphViewDaily.as_view()),
 	#url(r'^api/binarycontent/$', BinaryContentView.as_view()),
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
