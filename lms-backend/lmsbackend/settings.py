@@ -119,24 +119,24 @@ USE_TZ = True
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOW_HEADERS = (
- 'x-requested-with',
- 'content-type',
- 'accept',
- 'origin',
- 'authorization',
- 'X-CSRFToken',
- 'Api-Authorization',
-)
+# CORS_ALLOW_HEADERS = (
+#  'x-requested-with',
+#  'content-type',
+#  'accept',
+#  'origin',
+#  'authorization',
+#  'X-CSRFToken',
+#  'Api-Authorization',
+# )
 
-CORS_ALLOW_METHODS = (
- 'GET',
- 'POST',
- 'PUT',
- 'PATCH',
- 'DELETE',
- 'OPTIONS'
-)
+# CORS_ALLOW_METHODS = (
+#  'GET',
+#  'POST',
+#  'PUT',
+#  'PATCH',
+#  'DELETE',
+#  'OPTIONS'
+# )
 
 # DRF Settings
 # disabled auth for easier testing.
