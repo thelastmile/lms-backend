@@ -195,16 +195,16 @@ FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0555
 FILE_UPLOAD_TEMP_DIR = '/tmp' # Docs show no trailing slash?  Silly Django
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600 #100MB
 
-# FILE PATHS, RELATIVE TO MEDIA_ROOT, With trailing slash only
+# FULL FILE UPLOAD PATHS
 # These directories will be created if they don't exist
-MEDIA_IMG = 'img/'
-MEDIA_VIDEO = 'video/'
-MEDIA_PDF = 'pdf/'
-MEDIA_HTML ='html/'
-MEDIA_DOCS = 'docs/'
-MEDIA_MISC = 'misc/'
-MEDIA_PHOTOS = 'photos/'
-MEDIA_CONTENT_THUMBNAILS = 'content_thumbnails/'
+MEDIA_IMG = '/media/assets/img/'
+MEDIA_VIDEO = '/media/assets/video/'
+MEDIA_PDF = '/media/assets/pdf/'
+MEDIA_HTML ='/media/assets/html/'
+MEDIA_DOCS = '/media/assets/docs/'
+MEDIA_MISC = '/media/assets/misc/'
+MEDIA_PHOTOS = '/media/assets/photos/'
+MEDIA_CONTENT_THUMBNAILS = '/media/assets/content_thumbnails/'
 
 # Import local settings
 try:
@@ -215,30 +215,30 @@ except ImportError:
 # Make directories AFTER loading local_settings
 
 # Create our file directories
-directory = '%s' % (MEDIA_ROOT)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_IMG)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_VIDEO)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_PDF)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_HTML)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-directory = '%s%s' % (MEDIA_ROOT,MEDIA_CONTENT_THUMBNAILS)
-if not os.path.exists(directory):
-    os.makedirs(directory)
+# directory = '%s' % (MEDIA_ROOT)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_IMG)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_VIDEO)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_PDF)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_HTML)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
+# directory = '%s%s' % (MEDIA_ROOT,MEDIA_CONTENT_THUMBNAILS)
+# if not os.path.exists(directory):
+#     os.makedirs(directory)
