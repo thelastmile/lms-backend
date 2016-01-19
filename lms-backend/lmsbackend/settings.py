@@ -215,30 +215,30 @@ except ImportError:
 # Make directories AFTER loading local_settings
 
 # Create our file directories
-# directory = '%s' % (MEDIA_ROOT)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_IMG)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_VIDEO)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_PDF)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_HTML)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_CONTENT_THUMBNAILS)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
+directory = '%s' % (MEDIA_ROOT)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_IMG)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_VIDEO)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_PDF)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_HTML)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_CONTENT_THUMBNAILS)
+if not os.path.exists(directory):
+    os.makedirs(directory)
