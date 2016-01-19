@@ -6,6 +6,7 @@ from lms_backend_app.models import UserProfile, Course, CustomContentType, Feedb
 from lmsbackend import settings
 import os
 import json
+import urlparse
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -79,7 +80,7 @@ class BinaryContentSerializer(serializers.ModelSerializer):
     directory_contents = serializers.SerializerMethodField('get_dir_structure')
 
     def get_url(self, obj):
-        return obj.file.url
+        return urlparse.urljoin(obj.file.url, urlparse.urlparse(obj.file.url).path)
 
     def get_dir_structure(self, obj):
         path = '%s%s' % (settings.MEDIA_ROOT,obj.extracted_path)
