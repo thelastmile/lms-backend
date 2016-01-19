@@ -186,6 +186,9 @@ MEDIA_DIRECTORY = '/media/'
 # MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
 # MEDIA_URL = '/media/'
 
+# Setup for S3
+MEDIA_ROOT = '/media/assets/'
+
 # File upload perms
 FILE_UPLOAD_PERMISSIONS = 0555
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0555
