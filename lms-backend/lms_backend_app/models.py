@@ -152,9 +152,6 @@ def upload_job_file_path(instance, filename):
     if ext == 'jpg' or ext == 'png' or ext == 'jpeg' or ext == 'svg':
         return '%s%s' % (settings.MEDIA_IMG, filename)
 
-    if ext == 'jpg' or ext == 'png' or ext == 'jpeg' or ext == 'svg':
-        return '%s%s' % (settings.MEDIA_IMG, filename)
-
     if ext == 'mp4' or ext == 'mpg' or ext == 'mkv' or ext == 'avi':
         return '%s%s' % (settings.MEDIA_VIDEO, filename)
 
@@ -168,12 +165,12 @@ class BinaryContent(models.Model):
     name = models.CharField(max_length=256)
     description = models.TextField(blank=True, null=True)
     content_type = models.ForeignKey(CustomContentType)
-    file = models.FileField(upload_to=upload_job_file_path)
+    file = models.FileField(max_length=256,upload_to=upload_job_file_path)
     module = models.ForeignKey(Module,blank=True, null=True)
     is_global = models.NullBooleanField();
     index_file = models.CharField(max_length=256,blank=True, null=True)
     extracted_path = models.CharField(max_length=512,blank=True, null=True)
-    thumbnail = models.ImageField(upload_to=get_content_tn_path, blank=True, null=True)
+    thumbnail = models.ImageField(max_length=256,upload_to=get_content_tn_path, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if self.pk is None:
