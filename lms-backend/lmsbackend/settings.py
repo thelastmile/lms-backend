@@ -197,14 +197,14 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600 #100MB
 
 # FULL FILE UPLOAD PATHS
 # These directories will be created if they don't exist
-MEDIA_IMG = '%s%s' % (MEDIA_URL,'/media/assets/img/')
-MEDIA_VIDEO = '%s%s' % (MEDIA_URL,'/media/assets/video/')
-MEDIA_PDF = '%s%s' % (MEDIA_URL,'/media/assets/pdf/')
-MEDIA_HTML ='%s%s' % (MEDIA_URL,'/media/assets/html/')
-MEDIA_DOCS = '%s%s' % (MEDIA_URL,'/media/assets/docs/')
-MEDIA_MISC = '%s%s' % (MEDIA_URL,'/media/assets/misc/')
-MEDIA_PHOTOS = '%s%s' % (MEDIA_URL,'/media/assets/photos/')
-MEDIA_CONTENT_THUMBNAILS = '%s%s' % (MEDIA_URL,'/media/assets/content_thumbnails/')
+MEDIA_IMG = '/media/assets/img/'
+MEDIA_VIDEO = '/media/assets/video/'
+MEDIA_PDF = '/media/assets/pdf/'
+MEDIA_HTML = '/media/assets/html/'
+MEDIA_DOCS = '/media/assets/docs/'
+MEDIA_MISC = '/media/assets/misc/'
+MEDIA_PHOTOS = '/media/assets/photos/'
+MEDIA_CONTENT_THUMBNAILS = '/media/assets/content_thumbnails/'
 
 # Import local settings
 try:
