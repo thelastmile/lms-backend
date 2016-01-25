@@ -178,6 +178,13 @@ class ModuleViewSet(viewsets.ModelViewSet):
     queryset = Module.objects.all()
     serializer_class = ModuleSerializer
 
+    def get_queryset(self):
+        queryset = Module.objects.all()
+        course = self.request.query_params.get('course', None)
+        if course is not None:
+            queryset = queryset.filter(course__id=course)
+        return queryset
+
 class BinaryContentViewSet(viewsets.ModelViewSet):
     serializer_class = BinaryContentSerializer
 
