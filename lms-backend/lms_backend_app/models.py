@@ -258,3 +258,11 @@ class Setting(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class AccessLog(models.Model):
+    user = models.ForeignKey(User)
+    path = models.TextField(blank=True, null=True)
+    created = models.DateTimeField(auto_created=True)
+
+    def __unicode__(self):
+        return "%s %s %s" % (self.user, self.created, self.path)

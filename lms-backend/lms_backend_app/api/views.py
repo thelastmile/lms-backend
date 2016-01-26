@@ -286,3 +286,7 @@ class SettingViewSet(viewsets.ModelViewSet):
 class CodeTestInstructionsJSONViewSet(viewsets.ModelViewSet):
     queryset = CodeTestInstructionsJSON.objects.all()
     serializer_class = CodeTestInstructionsJSONSerializer
+
+class AccessLogViewSet(viewsets.ModelViewSet):
+    queryset = AccessLog.objects.all()
+    serializer_class = AccessLogSerializer
