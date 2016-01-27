@@ -296,3 +296,10 @@ class CodeTestInstructionsJSONViewSet(viewsets.ModelViewSet):
 class AccessLogViewSet(viewsets.ModelViewSet):
     queryset = AccessLog.objects.all()
     serializer_class = AccessLogSerializer
+
+    def get_queryset(self):
+        queryset = AccessLog.objects.all()
+        userid = self.request.query_params.get('user', None)
+        if userid is not None:
+            queryset = queryset.filter(user__id=userid).order_by('-id')[:1]
+        return queryset
