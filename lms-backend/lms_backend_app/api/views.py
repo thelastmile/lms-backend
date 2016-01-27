@@ -300,6 +300,6 @@ class AccessLogViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = AccessLog.objects.all()
         userid = self.request.query_params.get('user', None)
-        if userid is not None:
-            queryset = queryset.filter(user__id=userid).order_by('-id')[:1]
+        if userid is not None and userid != "":
+            queryset = queryset.filter(user__id=userid.strip("/")).order_by('-id')[:1]
         return queryset
