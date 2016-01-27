@@ -213,7 +213,7 @@ class BinaryContentViewSetLite(viewsets.ModelViewSet):
         """
         queryset = BinaryContent.objects.all()
         module = self.request.query_params.get('module', None)
-        if module is not None:
+        if module is not None and != "undefined":
             queryset = queryset.filter(module__id=module)
 
         content_type = self.request.query_params.get('content_type', None)
