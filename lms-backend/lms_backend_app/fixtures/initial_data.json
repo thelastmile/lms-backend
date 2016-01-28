@@ -1,5 +1,4 @@
 [
-{"fields": {"name": "Track 1", "description": "Track 1 Students"}, "model": "lms_backend_app.course", "pk": 1}, {"fields": {"name": "Track 2", "description": "Track 2 Students"}, "model": "lms_backend_app.course", "pk": 2},
 {"fields": {"name": "Lesson"}, "model": "lms_backend_app.customcontenttype", "pk": 1}, {"fields": {"name": "Image"}, "model": "lms_backend_app.customcontenttype", "pk": 2}, {"fields": {"name": "Video"}, "model": "lms_backend_app.customcontenttype", "pk": 3}, {"fields": {"name": "Docs"}, "model": "lms_backend_app.customcontenttype", "pk": 4}, {"fields": {"name": 
 "Asset"}, "model": "lms_backend_app.customcontenttype", "pk": 5},
 {"fields": {"name": "Student", "permissions": []}, "model": "auth.group", "pk": 1}, {"fields": {"name": "Faculty", "permissions": []}, "model": "auth.group", "pk": 2}, {"fields": {"name": "Super Admin", "permissions": []}, "model": "auth.group", "pk": 3}
