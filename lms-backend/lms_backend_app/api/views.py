@@ -74,6 +74,22 @@ class AttendanceViewSet(viewsets.ModelViewSet):
     queryset = Attendance.objects.all()
     serializer_class = AttendanceSerializer
 
+class DailyScoresTechViewSet(viewsets.ModelViewSet):
+    queryset = DailyScoresTech.objects.all()
+    serializer_class = DailyScoresTechSerializer
+
+class DailyScoresSocialViewSet(viewsets.ModelViewSet):
+    queryset = DailyScoresSocial.objects.all()
+    serializer_class = DailyScoresSocialSerializer
+
+class DailyScoresParticipationViewSet(viewsets.ModelViewSet):
+    queryset = DailyScoresParticipation.objects.all()
+    serializer_class = DailyScoresParticipationSerializer
+
+class AttendanceViewSet(viewsets.ModelViewSet):
+    queryset = Attendance.objects.all()
+    serializer_class = AttendanceSerializer
+
 class AttendanceGraphViewDaily(APIView):
     renderer_classes = (JSONRenderer, )
     def get(self, request, format=None):

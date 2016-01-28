@@ -123,6 +123,18 @@ class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendance
 
+class DailyScoresTechSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DailyScoresTech
+
+class DailyScoresSocialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DailyScoresSocial
+
+class DailyScoresParticipationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DailyScoresParticipation
+
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course

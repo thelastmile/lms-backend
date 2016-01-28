@@ -28,8 +28,11 @@ router.register(r'choice', ChoiceViewSet, base_name='choice')
 router.register(r'testresult', TestResultViewSet, base_name='testresult')
 router.register(r'tag', TagViewSet, base_name='tag')
 router.register(r'setting', SettingViewSet, base_name='setting')
-router.register(r'jsoncode', CodeTestInstructionsJSONViewSet, base_name='setting')
+router.register(r'jsoncode', CodeTestInstructionsJSONViewSet, base_name='jsoncode')
 router.register(r'accesslog', AccessLogViewSet, base_name='accesslog')
+router.register(r'dailyscorestech', DailyScoresTechViewSet, base_name='dailyscorestech')
+router.register(r'dailyscoressocial', DailyScoresSocialViewSet, base_name='dailyscoressocial')
+router.register(r'dailyscoresparticipation', DailyScoresParticipationViewSet, base_name='dailyscoresparticipation')
 
 
 # just general index and api setup for now
