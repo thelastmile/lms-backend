@@ -113,6 +113,7 @@ class Note(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
     date = models.DateTimeField(default=timezone.now)
+    instructor_author = models.ForeignKey(User,blank=True, null=True, related_name='note_instructor_author')
 
     def __unicode__(self):
         return "%s %s %s %s" % (self.date,self.author.first_name,self.author.last_name,self.title)
