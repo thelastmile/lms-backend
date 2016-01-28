@@ -2,11 +2,12 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from lms_backend_app.models import UserProfile, Course, CustomContentType, FeedbackType, CodeType, Question, Note, \
     Feedback, Module, BinaryContent, TextContent, Test, UnitTest, Choice, TestResult, Tag, Attendance, Code, Setting, \
-    CodeTestInstructionsJSON, AccessLog
+    CodeTestInstructionsJSON, AccessLog, Attendance, DailyScoresTech, DailyScoresSocial, DailyScoresParticipation
 from lmsbackend import settings
 import os
 import json
 import urlparse
+from datetime import datetime, timedelta, time
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,6 +19,14 @@ class UserSerializer(serializers.ModelSerializer):
     course_id = serializers.SerializerMethodField()
     inmate_id = serializers.SerializerMethodField()
     profile_image = serializers.SerializerMethodField()
+    attendance = serializers.SerializerMethodField()
+    attendance_id = serializers.SerializerMethodField()
+    tech_score = serializers.SerializerMethodField()
+    tech_score_id = serializers.SerializerMethodField()
+    social_score = serializers.SerializerMethodField()
+    social_score_id = serializers.SerializerMethodField()
+    participation_score = serializers.SerializerMethodField()
+    participation_score_id = serializers.SerializerMethodField()
 
     def get_course(self, obj):
         profile, created = UserProfile.objects.get_or_create(user=obj)
@@ -38,6 +47,74 @@ class UserSerializer(serializers.ModelSerializer):
     def get_profile_image(self,obj):
         profile, created = UserProfile.objects.get_or_create(user=obj)
         return profile.profile_image.name
+
+    def get_attendance(self,obj):
+        today = datetime.now().date()
+        tomorrow = today + timedelta(1)
+        today_start = datetime.combine(today, time())
+        today_end = datetime.combine(tomorrow, time())
+        record, created = Attendance.objects.get_or_create(student=obj, date__lte=today_end, date__gte=today_start)
+        if created:
+            record.attendance = True
+        return record.attendance
+
+    def get_attendance_id(self,obj):
+        today = datetime.now().date()
+        tomorrow = today + timedelta(1)
+        today_start = datetime.combine(today, time())
+        today_end = datetime.combine(tomorrow, time())
+        record, created = Attendance.objects.get_or_create(student=obj, date__lte=today_end, date__gte=today_start)
+        if created:
+            record.attendance = True
+        return record.id
+
+    def get_tech_score(self,obj):
+        today = datetime.now().date()
+        tomorrow = today + timedelta(1)
+        today_start = datetime.combine(today, time())
+        today_end = datetime.combine(tomorrow, time())
+        record, created = DailyScoresTech.objects.get_or_create(student=obj, date__lte=today_end, date__gte=today_start)
+        return record.score
+
+    def get_tech_score_id(self,obj):
+        today = datetime.now().date()
+        tomorrow = today + timedelta(1)
+        today_start = datetime.combine(today, time())
+        today_end = datetime.combine(tomorrow, time())
+        record, created = DailyScoresTech.objects.get_or_create(student=obj, date__lte=today_end, date__gte=today_start)
+        return record.id
+
+    def get_social_score(self,obj):
+        today = datetime.now().date()
+        tomorrow = today + timedelta(1)
+        today_start = datetime.combine(today, time())
+        today_end = datetime.combine(tomorrow, time())
+        record, created = DailyScoresSocial.objects.get_or_create(student=obj, date__lte=today_end, date__gte=today_start)
+        return record.score
+
+    def get_social_score_id(self,obj):
+        today = datetime.now().date()
+        tomorrow = today + timedelta(1)
+        today_start = datetime.combine(today, time())
+        today_end = datetime.combine(tomorrow, time())
+        record, created = DailyScoresSocial.objects.get_or_create(student=obj, date__lte=today_end, date__gte=today_start)
+        return record.id
+
+    def get_participation_score(self,obj):
+        today = datetime.now().date()
+        tomorrow = today + timedelta(1)
+        today_start = datetime.combine(today, time())
+        today_end = datetime.combine(tomorrow, time())
+        record, created = DailyScoresParticipation.objects.get_or_create(student=obj, date__lte=today_end, date__gte=today_start)
+        return record.score
+
+    def get_participation_score_id(self,obj):
+        today = datetime.now().date()
+        tomorrow = today + timedelta(1)
+        today_start = datetime.combine(today, time())
+        today_end = datetime.combine(tomorrow, time())
+        record, created = DailyScoresParticipation.objects.get_or_create(student=obj, date__lte=today_end, date__gte=today_start)
+        return record.id
 
     class Meta:
         model = User

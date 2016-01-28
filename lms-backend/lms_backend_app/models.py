@@ -60,12 +60,12 @@ ATTENDANCE_CHOICES = (
 
 class Attendance(models.Model):
     student = models.ForeignKey(User, related_name='student')
-    instructor = models.ForeignKey(User, related_name='instructor')
+    instructor = models.ForeignKey(User, related_name='instructor',blank=True, null=True)
     attendance = models.NullBooleanField(choices = ATTENDANCE_CHOICES)
     date = models.DateTimeField(default=timezone.now)
 
     def __unicode__(self):
-        return '%s %s' % (self.student, self.date)
+        return '%s %s %s' % (self.student, self.date, self.attendance)
 
 
 class CustomContentType(models.Model):
@@ -266,3 +266,30 @@ class AccessLog(models.Model):
 
     def __unicode__(self):
         return "%s %s %s" % (self.user, self.created, self.path)
+
+class DailyScoresTech(models.Model):
+    student = models.ForeignKey(User, related_name='student_tech')
+    instructor = models.ForeignKey(User, related_name='instructor_tech',blank=True, null=True)
+    score = models.PositiveIntegerField(blank=True, null=True)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __unicode__(self):
+        return "%s %s %s" % (self.student, self.date, self.score)
+
+class DailyScoresSocial(models.Model):
+    student = models.ForeignKey(User, related_name='student_social')
+    instructor = models.ForeignKey(User, related_name='instructor_social',blank=True, null=True)
+    score = models.PositiveIntegerField(blank=True, null=True)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __unicode__(self):
+        return "%s %s %s" % (self.student, self.date, self.score)
+
+class DailyScoresParticipation(models.Model):
+    student = models.ForeignKey(User, related_name='_participation')
+    instructor = models.ForeignKey(User, related_name='instructor_participation',blank=True, null=True)
+    score = models.PositiveIntegerField(blank=True, null=True)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __unicode__(self):
+        return "%s %s %s" % (self.student, self.date, self.score)

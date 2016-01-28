@@ -37,3 +37,7 @@ admin.site.register(Tag)
 admin.site.register(Setting)
 admin.site.register(CodeTestInstructionsJSON)
 admin.site.register(AccessLog)
+admin.site.register(DailyScoresParticipation)
+admin.site.register(DailyScoresTech)
+admin.site.register(DailyScoresSocial)
+
