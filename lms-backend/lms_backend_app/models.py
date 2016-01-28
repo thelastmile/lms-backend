@@ -182,7 +182,7 @@ class BinaryContent(models.Model):
                 self.extracted_path = '%s%s/' % (settings.MEDIA_MISC, directoryname)
                 self.full_extracted_path = '%s%s' % (settings.MEDIA_ROOT,self.extracted_path)
                 zfile.extractall(self.full_extracted_path)
-        super(BinaryContent, self).save(*args, **kwargs) # Call the "real" save() method.
+        super(BinaryContent, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return '%s' % self.file
