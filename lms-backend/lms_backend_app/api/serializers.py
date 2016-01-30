@@ -172,13 +172,17 @@ class CodeSerializer(serializers.ModelSerializer):
         model = Code
 
 class BinaryContentSerializer(serializers.ModelSerializer):
-    file_url = serializers.SerializerMethodField('get_url')
-    directory_contents = serializers.SerializerMethodField('get_dir_structure')
+    file_url = serializers.SerializerMethodField()
+    directory_contents = serializers.SerializerMethodField()
+    relative_url = serializers.SerializerMethodField()
 
-    def get_url(self, obj):
+    def get_file_url(self, obj):
         return urlparse.urljoin(obj.file.url, urlparse.urlparse(obj.file.url).path)
 
-    def get_dir_structure(self, obj):
+    def get_relative_url(self, obj):
+        return urlparse.urlparse(obj.file.url).path
+
+    def get_directory_contents(self, obj):
         path = '%s%s' % (settings.MEDIA_ROOT,obj.extracted_path)
         if path:
             extracted_path_html = ''

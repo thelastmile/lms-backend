@@ -10,6 +10,7 @@ from django.utils import timezone
 from jsonfield import JSONField
 import boto
 from boto.s3.key import Key
+import shutil
 
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
@@ -175,16 +176,21 @@ class BinaryContent(models.Model):
     extracted_path = models.CharField(max_length=512,blank=True, null=True)
     thumbnail = models.ImageField(max_length=256,upload_to=get_content_tn_path, blank=True, null=True)
 
-    def uploadResultToS3(self, awsid,awskey,bucket,source_folder): 
+    def uploadResultToS3(self, awsid,awskey,bucket,source_folder,to_path): 
         c = boto.connect_s3(awsid,awskey) 
         b = c.get_bucket(bucket) 
         k = Key(b) 
-        for path,dir,files in os.walk(source_folder): 
-            for file in files: 
-                relpath = os.path.relpath(os.path.join(path,file)) 
+        for path,directory,files in os.walk(source_folder):
+            print path
+            for file in files:
+                destination_file_path = path.split('/',1)[1]
+                print destination_file_path
+                destination_path = os.path.relpath(os.path.join(to_path,destination_file_path,file))
+                print destination_path
+                relpath = os.path.relpath(os.path.join(path,file))
                 if not b.get_key(relpath):
                     print 'sending...',relpath
-                    k.key = relpath
+                    k.key = destination_path
                     k.set_contents_from_filename(relpath)
                     try:
                         k.set_acl('public-read')
@@ -204,8 +210,16 @@ class BinaryContent(models.Model):
                 zfile.extractall(self.extracted_path)
 
             if settings.COPY_UPLOADED_FILES_TO_S3:
-                bucket = "%s%s" % (settings.MEDIA_URL, settings.MEDIA_HTML)
-                self.uploadResultToS3(settings.AWS_ACCESS_KEY_ID,settings.AWS_SECRET_ACCESS_KEY,bucket,self.extracted_path)
+                self.uploadResultToS3(settings.AWS_ACCESS_KEY_ID,
+                    settings.AWS_SECRET_ACCESS_KEY,
+                    settings.AWS_STORAGE_BUCKET_NAME,
+                    self.extracted_path,
+                    settings.MEDIA_HTML)
+                """
+                Now DELETE the temp path
+                """
+                shutil.rmtree(self.extracted_path, ignore_errors=True)
+
 
         super(BinaryContent, self).save(*args, **kwargs)
 
