@@ -8,6 +8,8 @@ import zipfile
 import os
 from django.utils import timezone
 from jsonfield import JSONField
+import boto
+from boto.s3.key import Key
 
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
@@ -173,6 +175,22 @@ class BinaryContent(models.Model):
     extracted_path = models.CharField(max_length=512,blank=True, null=True)
     thumbnail = models.ImageField(max_length=256,upload_to=get_content_tn_path, blank=True, null=True)
 
+    def uploadResultToS3(awsid,awskey,bucket,source_folder): 
+        c = boto.connect_s3(awsid,awskey) 
+        b = c.get_bucket(bucket) 
+        k = Key(b) 
+        for path,dir,files in os.walk(source_folder): 
+            for file in files: 
+                relpath = os.path.relpath(os.path.join(path,file)) 
+                if not b.get_key(relpath):
+                    print 'sending...',relpath
+                    k.key = relpath
+                    k.set_contents_from_filename(relpath)
+                    try:
+                        k.set_acl('public-read')
+                    except:
+                        print "failed"
+
     def save(self, *args, **kwargs):
         if self.pk is None:
             """
@@ -184,6 +202,11 @@ class BinaryContent(models.Model):
                 zfile = zipfile.ZipFile(self.file)
                 self.extracted_path = '%s/%s/' % (settings.FILE_UPLOAD_TEMP_DIR, directoryname)
                 zfile.extractall(self.extracted_path)
+
+            if settings.COPY_UPLOADED_FILES_TO_S3:
+                bucket = "%s%s" % (MEDIA_URL, MEDIA_HTML)
+                self.uploadResultToS3(settings.AWS_ACCESS_KEY_ID,settings.AWS_SECRET_ACCESS_KEY,bucket,self.extracted_path)
+
         super(BinaryContent, self).save(*args, **kwargs)
 
     def __unicode__(self):

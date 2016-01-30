@@ -162,6 +162,7 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 # AMAZON S3
+COPY_UPLOADED_FILES_TO_S3 = True
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'lms-backend-static-dev'
