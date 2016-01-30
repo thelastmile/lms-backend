@@ -204,7 +204,7 @@ class BinaryContent(models.Model):
                 zfile.extractall(self.extracted_path)
 
             if settings.COPY_UPLOADED_FILES_TO_S3:
-                bucket = "%s%s" % (MEDIA_URL, MEDIA_HTML)
+                bucket = "%s%s" % (settings.MEDIA_URL, settings.MEDIA_HTML)
                 self.uploadResultToS3(settings.AWS_ACCESS_KEY_ID,settings.AWS_SECRET_ACCESS_KEY,bucket,self.extracted_path)
 
         super(BinaryContent, self).save(*args, **kwargs)
