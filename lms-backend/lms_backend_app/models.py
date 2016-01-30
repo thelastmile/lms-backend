@@ -182,7 +182,7 @@ class BinaryContent(models.Model):
             directoryname = '%s' % (uuid.uuid4())
             if ext.lower() == 'zip':
                 zfile = zipfile.ZipFile(self.file)
-                self.extracted_path = '%s%s/' % (settings.FILE_UPLOAD_TEMP_DIR, directoryname)
+                self.extracted_path = '%s/%s/' % (settings.FILE_UPLOAD_TEMP_DIR, directoryname)
                 zfile.extractall(self.extracted_path)
         super(BinaryContent, self).save(*args, **kwargs)
 
