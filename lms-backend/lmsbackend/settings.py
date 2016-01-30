@@ -192,7 +192,7 @@ MEDIA_ROOT = '/media/assets/'
 # File upload perms
 FILE_UPLOAD_PERMISSIONS = 0555
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0555
-FILE_UPLOAD_TEMP_DIR = '/tmp' # Docs show no trailing slash?  Silly Django
+FILE_UPLOAD_TEMP_DIR = '/opt/python/current/app/tmp' # Docs show no trailing slash?  Silly Django
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600 #100MB
 
 # FULL FILE UPLOAD PATHS
