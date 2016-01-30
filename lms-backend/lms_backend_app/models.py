@@ -175,7 +175,7 @@ class BinaryContent(models.Model):
     extracted_path = models.CharField(max_length=512,blank=True, null=True)
     thumbnail = models.ImageField(max_length=256,upload_to=get_content_tn_path, blank=True, null=True)
 
-    def uploadResultToS3(awsid,awskey,bucket,source_folder): 
+    def uploadResultToS3(self, awsid,awskey,bucket,source_folder): 
         c = boto.connect_s3(awsid,awskey) 
         b = c.get_bucket(bucket) 
         k = Key(b) 
