@@ -15,7 +15,7 @@ import json
 from rest_framework.decorators import detail_route
 from rest_framework.decorators import api_view
 from django.db.models import Q
-
+from lmsbackend import settings
 import os
 
 @api_view()
@@ -35,9 +35,13 @@ def list_system_vars(request):
     current_script_file_path = os.path.abspath(__file__)
     current_script_directory_path = os.path.dirname(os.path.abspath(__file__))
     current_working_directory = os.getcwd()
+    tmp_directory_listing = os.listdir(settings.FILE_UPLOAD_TEMP_DIR)
     
 
-    data = {"current_script_file_path":current_script_file_path,"current_script_directory_path":current_script_directory_path,"current_working_directory":current_working_directory}
+    data = {"current_script_file_path":current_script_file_path,
+        "current_script_directory_path":current_script_directory_path,
+        "current_working_directory":current_working_directory,
+        "tmp_directory_listing":tmp_directory_listing}
     return Response(data)
 
 class ObtainAuthToken(APIView):

@@ -175,13 +175,15 @@ class BinaryContent(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk is None:
+            """
+            Unzip on local temp area, upload to S3 or another connector
+            """
             ext = self.file.name.split(".")[-1].lower()
             directoryname = '%s' % (uuid.uuid4())
             if ext.lower() == 'zip':
                 zfile = zipfile.ZipFile(self.file)
-                self.extracted_path = '%s%s/' % (settings.MEDIA_MISC, directoryname)
-                self.full_extracted_path = '%s%s' % (settings.MEDIA_ROOT,self.extracted_path)
-                zfile.extractall(self.full_extracted_path)
+                self.extracted_path = '%s%s/' % (settings.FILE_UPLOAD_TEMP_DIR, directoryname)
+                zfile.extractall(self.extracted_path)
         super(BinaryContent, self).save(*args, **kwargs)
 
     def __unicode__(self):
