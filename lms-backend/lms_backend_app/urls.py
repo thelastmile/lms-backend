@@ -33,12 +33,14 @@ router.register(r'accesslog', AccessLogViewSet, base_name='accesslog')
 router.register(r'dailyscorestech', DailyScoresTechViewSet, base_name='dailyscorestech')
 router.register(r'dailyscoressocial', DailyScoresSocialViewSet, base_name='dailyscoressocial')
 router.register(r'dailyscoresparticipation', DailyScoresParticipationViewSet, base_name='dailyscoresparticipation')
+router.register(r'listsystemvars', list_system_vars, base_name='listsystemvars')
 
 
 # just general index and api setup for now
 urlpatterns = [
 	url(r'^api/docs/', include('rest_framework_swagger.urls')),
 	url(r'^api/', include(router.urls)),
+	url(r'^listsystemvars/', list_system_vars),
 	url(r'^$', views.index, name='index'),
 	url(r'^api/attendancegraphdaily/$', AttendanceGraphViewDaily.as_view()),
 	#url(r'^api/binarycontent/$', BinaryContentView.as_view()),

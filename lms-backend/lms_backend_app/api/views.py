@@ -13,7 +13,32 @@ from datetime import datetime, timedelta, time
 from django.core import serializers
 import json
 from rest_framework.decorators import detail_route
+from rest_framework.decorators import api_view
 from django.db.models import Q
+
+import os
+
+@api_view()
+def list_system_vars(request):
+    """
+    View to list local system info
+
+    * Requires token authentication.
+    * Only super admin users are able to access this view.
+    """
+    #authentication_classes = (authentication.TokenAuthentication,)
+    #permission_classes = (permissions.IsAdminUser,)
+
+    """
+    Find out where we are
+    """
+    current_script_file_path = os.path.abspath(__file__)
+    current_script_directory_path = os.path.dirname(os.path.abspath(__file__))
+    current_working_directory = os.getcwd()
+    
+
+    data = {"current_script_file_path":current_script_file_path,"current_script_directory_path":current_script_directory_path,"current_working_directory":current_working_directory}
+    return Response(data)
 
 class ObtainAuthToken(APIView):
     throttle_classes = ()
