@@ -217,8 +217,10 @@ class BinaryContent(models.Model):
                     settings.MEDIA_HTML)
                 """
                 Now DELETE the temp path
+                and reset the path to that on S3
                 """
                 shutil.rmtree(self.extracted_path, ignore_errors=True)
+                self.extracted_path = "/%s%s/" % (settings.MEDIA_HTML,directoryname)
 
 
         super(BinaryContent, self).save(*args, **kwargs)
