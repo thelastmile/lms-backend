@@ -206,7 +206,7 @@ class BinaryContentSerializerLite(serializers.ModelSerializer):
 
     class Meta:
         model = BinaryContent
-        fields = ('id', 'name', 'description','file','index_file','file_url','thumbnail','is_global','content_type')
+        fields = ('id', 'name', 'description','file','index_file', 'index_file_list', 'file_url','thumbnail','is_global','content_type')
 
 class BinaryContentSerializerUltraLite(serializers.ModelSerializer):
     file_url = serializers.SerializerMethodField('get_url')
@@ -216,7 +216,7 @@ class BinaryContentSerializerUltraLite(serializers.ModelSerializer):
 
     class Meta:
         model = BinaryContent
-        fields = ('id', 'name', 'description','index_file','file_url','thumbnail','is_global','content_type')
+        fields = ('id', 'name', 'description','index_file','index_file_list','file_url','thumbnail','is_global','content_type')
 
 
 class TextContentSerializer(serializers.ModelSerializer):

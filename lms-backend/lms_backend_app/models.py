@@ -11,6 +11,7 @@ from jsonfield import JSONField
 import boto
 from boto.s3.key import Key
 import shutil
+import json
 
 """
 NOTE: the usage of the following allows ForeignKey model associations to ANY model:
@@ -175,18 +176,22 @@ class BinaryContent(models.Model):
     index_file = models.CharField(max_length=256,blank=True, null=True)
     extracted_path = models.CharField(max_length=512,blank=True, null=True)
     thumbnail = models.ImageField(max_length=256,upload_to=get_content_tn_path, blank=True, null=True)
+    index_file_list = JSONField(blank=True, null=True) # Temp field for storing selections of options as to the main index file for archives
 
     def uploadResultToS3(self, awsid,awskey,bucket,source_folder,to_path,uuid): 
         c = boto.connect_s3(awsid,awskey) 
         b = c.get_bucket(bucket) 
-        k = Key(b) 
+        k = Key(b)
+        index_file_list = []
         for path,directory,files in os.walk(source_folder):
             destination_file_path = path.split('/',1)[1]
             for file in files:
                 destination_path = os.path.relpath(os.path.join(to_path,destination_file_path,file))
                 relpath = os.path.relpath(os.path.join(path,file))
+                if 'index.htm' in file:
+                    index_file_list.append(os.path.relpath(os.path.join(destination_file_path,file).split('/',1)[1]));
                 if not b.get_key(relpath):
-                    print 'sending  ...',relpath[-20:]
+                    print 'sending  ...%s' % relpath[-30:]
                     k.key = destination_path
                     k.set_contents_from_filename(relpath)
                     try:
@@ -198,6 +203,7 @@ class BinaryContent(models.Model):
         print rs
         for r in rs:
             print r.key
+        return json.dumps(index_file_list)
 
     def save(self, *args, **kwargs):
         if self.pk is None:
@@ -212,7 +218,7 @@ class BinaryContent(models.Model):
                 zfile.extractall(self.extracted_path)
 
             if settings.COPY_UPLOADED_FILES_TO_S3:
-                self.uploadResultToS3(settings.AWS_ACCESS_KEY_ID,
+                self.index_file_list = self.uploadResultToS3(settings.AWS_ACCESS_KEY_ID,
                     settings.AWS_SECRET_ACCESS_KEY,
                     settings.AWS_STORAGE_BUCKET_NAME,
                     self.extracted_path,
