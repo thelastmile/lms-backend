@@ -40,6 +40,7 @@ class Module(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField()
     course = models.ForeignKey(Course)
+    order = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -177,6 +178,7 @@ class BinaryContent(models.Model):
     extracted_path = models.CharField(max_length=512,blank=True, null=True)
     thumbnail = models.ImageField(max_length=256,upload_to=get_content_tn_path, blank=True, null=True)
     index_file_list = JSONField(blank=True, null=True) # Temp field for storing selections of options as to the main index file for archives
+    order = models.IntegerField(blank=True, null=True)
 
     def uploadResultToS3(self, awsid,awskey,bucket,source_folder,to_path,uuid): 
         c = boto.connect_s3(awsid,awskey) 
@@ -235,7 +237,7 @@ class BinaryContent(models.Model):
         super(BinaryContent, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return '%s' % self.file
+        return '%s %s' % (self.name, self.file)
 
 class TextContent(models.Model):
     # (This is where the markdown will live. Increased to fit large lessons)

@@ -220,11 +220,11 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     serializer_class = FeedbackSerializer
 
 class ModuleViewSet(viewsets.ModelViewSet):
-    queryset = Module.objects.all()
+    queryset = Module.objects.order_by('order').all()
     serializer_class = ModuleSerializer
 
     def get_queryset(self):
-        queryset = Module.objects.all()
+        queryset = Module.objects.order_by('order').all()
         course = self.request.query_params.get('course', None)
         if course is not None:
             queryset = queryset.filter(course__id=course)
@@ -256,7 +256,7 @@ class BinaryContentViewSetLite(viewsets.ModelViewSet):
         Optionally restricts the returned set to a given user,
         by filtering against a `username` query parameter in the URL.
         """
-        queryset = BinaryContent.objects.all()
+        queryset = BinaryContent.objects.order_by('order').all()
         module = self.request.query_params.get('module', None)
         if module is not None and module != "undefined":
             queryset = queryset.filter(module__id=module)
@@ -284,7 +284,7 @@ class BinaryContentViewSetUltraLite(viewsets.ModelViewSet):
         Optionally restricts the returned set to a given user,
         by filtering against a `username` query parameter in the URL.
         """
-        queryset = BinaryContent.objects.all()
+        queryset = BinaryContent.objects.order_by('order').all()
         module = self.request.query_params.get('module', None)
         if module is not None:
             queryset = queryset.filter(module__id=module)
