@@ -214,6 +214,7 @@ class BinaryContent(models.Model):
             """
             ext = self.file.name.split(".")[-1].lower()
             directoryname = '%s' % (uuid.uuid4())
+            self.extracted_path = '%s/%s/' % (settings.FILE_UPLOAD_TEMP_DIR, directoryname)
             if ext.lower() == 'zip':
                 zfile = zipfile.ZipFile(self.file)
                 self.extracted_path = '%s/%s/' % (settings.FILE_UPLOAD_TEMP_DIR, directoryname)
