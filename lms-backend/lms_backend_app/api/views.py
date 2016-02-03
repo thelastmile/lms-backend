@@ -262,18 +262,19 @@ class BinaryContentViewSetLite(viewsets.ModelViewSet):
             queryset = queryset.filter(module__id=module)
 
         content_type = self.request.query_params.get('content_type', None)
-
-
-        if content_type is not None:
+        if content_type == '5' or content_type == 'resources':
+            queryset = BinaryContent.objects.filter((Q(is_global=True) | Q(content_type__name__icontains="Asset") | Q(content_type__name__icontains="Image") | Q(content_type__name__icontains="Docs"))).order_by('content_type')
+            print queryset
+            print content_type
+            print "HERE"
+        elif content_type is not None:
             # Strip an ending S if it has one
             if content_type[-1] == "s":
                 content_type = content_type[:-1]
 
             queryset = queryset.filter(content_type__name__icontains=content_type)
-        elif content_type == '5':
-            queryset = BinaryContent.objects.filter(is_global=True).order_by('content_type')
-            print content_type
-            print "HERE"
+            print "here"
+        
         return queryset
 
 class BinaryContentViewSetUltraLite(viewsets.ModelViewSet):
