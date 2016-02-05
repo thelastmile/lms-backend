@@ -91,7 +91,7 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
   * verify it works `eb --version` should print something like "EB CLI 3.2.2 (Python 2.7.9)"
   * For more details on installing python 2.7, pip and the aws cli that includes eb go here: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html
  * Configure your access
-  * double check your security/creds `vi ~/.aws/credentials` and add a new entry if needed.  We're using "tlm" for this example.  These keys and IDs are created in the AWS console admin tool.  If your OPS/Jenkins machine will have several accounts for multiple clients this will be mandatory, if not you could keep the TLM key as the 'default'.
+  * double check your security/creds `vi /var/lib/jenkins/.aws/credentials` and add a new entry if needed.  We're using "tlm" for this example.  These keys and IDs are created in the AWS console admin tool.  If your OPS/Jenkins machine will have several accounts for multiple clients this will be mandatory, if not you could keep the TLM key as the 'default'.
    * Will look like this
    ```
    [default]
