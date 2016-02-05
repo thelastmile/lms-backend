@@ -90,4 +90,11 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
   * `pip install awsebcli`
   * verify it works `eb --version` should print something like "EB CLI 3.2.2 (Python 2.7.9)"
   * For more details on installing python 2.7, pip and the aws cli that includes eb go here: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html
-
+ * Configure your access
+  * Follow directions here http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html for configuring your user access to the new Elastic Beanstalk environment.  The link also provides information pertaining to how to create the new Elastic Beanstalk environemnt if you havent' created one yet.  It can be done via the CLI or via the web management console.  During configuration:
+   * The environment must be python 2.7
+   * A postgres database must be added
+ * The environment and required packages have all already been setup and can be seen in the `.ebextensions` directory
+ * Edit the .elasticbeanstalk/config.yml to fit your environment for production.  Commit this file to git/github after changed!  The production path to the project and environment should remain in this file at all times.
+* test your first deployment `eb deploy`
+* Once deployment is successful from command prompt then exit from ssh and you should now be able to successfully run manual builds from the UI and git-triggered builds to elastic beanstalk automagically. :)
