@@ -75,14 +75,10 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
 
 * Create the new job in Jenkins that pulls code from https://github.com/thelastmile/lms-backend git repo based on an event trigger setup on github.  Use the above linked Jenkins job as a model.
   * Use the following Command under the 'Build Process' section -> Execute Shell
-
-tlm-lms-backend is the current environment_name for dev.  In the code below replace tlm-lms-backend with the environment_name as it is setup on AWS Elastic Beanstalk
-
-```
-cd lms-backend
-eb use tlm-lms-backend
-eb deploy
-```
+  ```cd lms-backend
+  eb use <YOUR ELASTIC BEANSTALK ENVIRONMENT NAME>"
+  eb deploy
+  ```
 
 * Ensure that the build is properly extracting the files from the master branch to the local build directory
   * ssh onto Jenkins machine and `cd /var/lib/jenkins/workspace/PATHTOPROJECT/`
