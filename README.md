@@ -91,25 +91,25 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
   * verify it works `eb --version` should print something like "EB CLI 3.2.2 (Python 2.7.9)"
   * For more details on installing python 2.7, pip and the aws cli that includes eb go here: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html
  * Configure your access
+  * double check your security/creds `vi ~/.aws/credentials` and add a new entry if needed.  We're using "tlm" for this example.  These keys and IDs are created in the AWS console admin tool.  If your OPS/Jenkins machine will have several accounts for multiple clients this will be mandatory, if not you could keep the TLM key as the 'default'.
+   * Will look like this
+   ```
+   [default]
+   aws_access_key_id = <THEKEYID>
+   aws_secret_access_key = <THEACCESKEY>
+
+   [clientb]
+   aws_access_key_id = <THEKEYID>
+   aws_secret_access_key = <THEACCESKEY>
+
+   [tlm]
+   aws_access_key_id = <THEKEYID>
+   aws_secret_access_key = <THEACCESKEY>
+   ```
   * Follow directions here http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html for configuring your user access to the new Elastic Beanstalk environment.  The link also provides information pertaining to how to create the new Elastic Beanstalk environemnt if you havent' created one yet.  It can be done via the CLI or via the web management console.  During configuration:
    * The environment must be python 2.7
    * A postgres database must be added
  * The environment and required packages have all already been setup and can be seen in the `.ebextensions` directory
  * Edit the `.elasticbeanstalk/config.yml` to fit your environment for production.  Commit this file to git/github after changed!  The production path to the project and environment should remain in this file at all times.
-* double check your security/creds `vi ~/.aws/credentials` and add a new entry if needed.  We're using "tlm" for this example.
-  * Will look like this
-  ```
-  [default]
-aws_access_key_id = <THEKEYID>
-aws_secret_access_key = <THEACCESKEY>
-
-[clientb]
-aws_access_key_id = <THEKEYID>
-aws_secret_access_key = <THEACCESKEY>
-
-[tlm]
-aws_access_key_id = <THEKEYID>
-aws_secret_access_key = <THEACCESKEY>
-  ```
 * test your first deployment specifiying the profile to use `eb deploy --profile tlm`
 * Once deployment is successful from command prompt then exit from ssh and you should now be able to successfully run manual builds from the UI and git-triggered builds to elastic beanstalk automagically. :)
