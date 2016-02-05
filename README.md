@@ -84,8 +84,8 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
   * RUN the Jenkins job.  It will fail on the `eb use` command but it will setup your filesystem for the next steps.
 
 * Ensure that the build is properly extracting the files from the master branch to the local build directory
-  * ssh onto Jenkins machine and `cd /var/lib/jenkins/workspace/PATHTOPROJECT/`
-  * `ls -a` to see that all files are there as expected, including the venv directory.  If so then proceed with next step.
+  * ssh onto Jenkins machine and `cd /var/lib/jenkins/workspace/PATHTOPROJECT/lms-backend`
+  * `ls -a` to see that all files are there as expected, including the .elasticbeanstalk and .ebextensions directory.  If so then proceed with next step.
 * install the eb tool (Requires Python 2.7 installed on Jenkins machine)
   * `pip install awsebcli`
   * verify it works `eb --version` should print something like "EB CLI 3.2.2 (Python 2.7.9)"
