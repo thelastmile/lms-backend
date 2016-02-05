@@ -67,3 +67,6 @@ python manage.py syncdb --noinput
 python manage.py migrate
 ./manage.py loaddata initial_data
 ```
+
+###Jenkins setup
+Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configuration used for automating dev updates when the master branch is updated and pushed to github.
