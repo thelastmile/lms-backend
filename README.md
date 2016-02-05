@@ -71,7 +71,7 @@ python manage.py migrate
 ###Jenkins setup - AWS Elastic Beanstalk
 Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configuration used for automating dev updates when the master branch is updated and pushed to github.
 
-The additional information for how to setup Jenkins for a new job is below:
+####The additional information for how to setup Jenkins for a new backend deployment to Elastic Beanstalk job is below
 
 * Create the new job in Jenkins that pulls code from https://github.com/thelastmile/lms-backend git repo based on an event trigger setup on github.  Use the above linked Jenkins job as a model.
   * Use the following Command under the 'Build Process' section -> Execute Shell
