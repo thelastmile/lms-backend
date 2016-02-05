@@ -75,7 +75,8 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
 
 * Create the new job in Jenkins that pulls code from https://github.com/thelastmile/lms-backend git repo based on an event trigger setup on github.  Use the above linked Jenkins job as a model.
   * Use the following Command under the 'Build Process' section -> Execute Shell
-  ```cd lms-backend
+  ```
+  cd lms-backend
   eb use <YOUR ELASTIC BEANSTALK ENVIRONMENT NAME>"
   eb deploy
   ```
