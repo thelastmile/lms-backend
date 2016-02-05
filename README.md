@@ -95,7 +95,7 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
    * The environment must be python 2.7
    * A postgres database must be added
  * The environment and required packages have all already been setup and can be seen in the `.ebextensions` directory
- * Edit the .elasticbeanstalk/config.yml to fit your environment for production.  Commit this file to git/github after changed!  The production path to the project and environment should remain in this file at all times.
+ * Edit the `.elasticbeanstalk/config.yml` to fit your environment for production.  Commit this file to git/github after changed!  The production path to the project and environment should remain in this file at all times.
 * double check your security/creds `vi ~/.aws/credentials` and add a new entry if needed.  We're using "tlm" for this example.
   * Will look like this
   ```
