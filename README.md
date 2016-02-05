@@ -113,3 +113,5 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
  * Edit the `.elasticbeanstalk/config.yml` to fit your environment for production.  Commit this file to git/github after changed!  The production path to the project and environment should remain in this file at all times.
 * test your first deployment specifiying the profile to use `eb deploy --profile tlm`
 * Once deployment is successful from command prompt then exit from ssh and you should now be able to successfully run manual builds from the UI and git-triggered builds to elastic beanstalk automagically. :)
+* To confirm correct operation, visit the app /admin like: http://tlm-lms-backend.elasticbeanstalk.com/admin/ and you should see the admin login area.  The initial login on deployment is set to admin/admin.
+* Login and change the admin password immediately and create a new user for yourself, marked as admin aswell.
