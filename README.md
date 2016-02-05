@@ -78,7 +78,7 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
   ```
   cd lms-backend
   eb use <YOUR ELASTIC BEANSTALK ENVIRONMENT NAME>"
-  eb deploy
+  eb deploy --profile tlm
   ```
   * Save your Jenkins job.
   * RUN the Jenkins job.  It will fail on the `eb use` command but it will setup your filesystem for the next steps.
@@ -96,5 +96,20 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
    * A postgres database must be added
  * The environment and required packages have all already been setup and can be seen in the `.ebextensions` directory
  * Edit the .elasticbeanstalk/config.yml to fit your environment for production.  Commit this file to git/github after changed!  The production path to the project and environment should remain in this file at all times.
-* test your first deployment `eb deploy`
+* double check your security/creds `vi ~/.aws/credentials` and add a new entry if needed.  We're using "tlm" for this example.
+  * Will look like this
+  ```
+  [default]
+aws_access_key_id = <THEKEYID>
+aws_secret_access_key = <THEACCESKEY>
+
+[clientb]
+aws_access_key_id = <THEKEYID>
+aws_secret_access_key = <THEACCESKEY>
+
+[tlm]
+aws_access_key_id = <THEKEYID>
+aws_secret_access_key = <THEACCESKEY>
+  ```
+* test your first deployment specifiying the profile to use `eb deploy --profile tlm`
 * Once deployment is successful from command prompt then exit from ssh and you should now be able to successfully run manual builds from the UI and git-triggered builds to elastic beanstalk automagically. :)
