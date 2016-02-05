@@ -80,6 +80,8 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
   eb use <YOUR ELASTIC BEANSTALK ENVIRONMENT NAME>"
   eb deploy
   ```
+  * Save your Jenkins job.
+  * RUN the Jenkins job.  It will fail on the `eb use` command but it will setup your filesystem for the next steps.
 
 * Ensure that the build is properly extracting the files from the master branch to the local build directory
   * ssh onto Jenkins machine and `cd /var/lib/jenkins/workspace/PATHTOPROJECT/`
