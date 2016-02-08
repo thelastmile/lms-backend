@@ -36,7 +36,6 @@ python manage.py createsuperuser
 ```
 
 
-
 Edit your local_settings.py to meet your needs.  For local dev the as-is local_settings.example.py is good to go.  For production Debug must be off, S3 keys must be added and STATICFILES_STORAGE/DEFAULT_FILE_STORAGE lines removed.
 
 You may want to set your dev local settings as follows to allow the MEDIA path to live in the root of your project (it won't be committed to git)
