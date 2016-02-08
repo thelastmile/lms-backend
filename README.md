@@ -67,3 +67,10 @@ python manage.py syncdb --noinput
 python manage.py migrate
 ./manage.py loaddata initial_data
 ```
+
+###Jenkins
+
+####On Jenkins host
+
+Install and configure AWS cli tool with keys for access
+
