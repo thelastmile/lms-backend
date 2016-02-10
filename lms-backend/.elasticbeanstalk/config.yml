@@ -1,9 +1,9 @@
 branch-defaults:
   master:
-    environment: tlm-lms-backend
+    environment: null
     group_suffix: null
 global:
-  application_name: tlmLmsBackend-staging
+  application_name: tlm-lms-backend
   default_ec2_keyname: tlm
   default_platform: Python 2.7
   default_region: us-west-2
