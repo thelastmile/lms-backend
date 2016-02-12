@@ -67,7 +67,6 @@ python manage.py migrate
 ./manage.py loaddata initial_data
 ```
 
-<<<<<<< HEAD
 ###Jenkins
 
 ####On Jenkins host
