@@ -123,3 +123,36 @@ Access http://52.35.21.48:8080/job/TLM%20LMS%20Backend/ for the Jenkins configur
 * To confirm correct operation, visit the app /admin like: http://tlm-lms-backend.elasticbeanstalk.com/admin/ and you should see the admin login area.  The initial login on deployment is set to admin/admin.
 * Login and change the admin password immediately and create a new user for yourself, marked as admin aswell.
 
+### CENTOS7
+```
+git clone https://github.com/thelastmile/lms-backend.git
+cd lms-backend/lmsbackend
+yum install libjpeg-turbo-devel
+```
+
+Update config for postgres
+`cp local_settings.example.py local_settings.py`
+
+add this to local settings:
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'lms',
+        'USER': 'lmsuser',
+        'PASSWORD': '@ech043v3r@lms@',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+```
+run
+```
+yum install python-virtualenv
+virtualenv venv
+. venv/bin/activate
+pip install -r requirements.txt
+./manage.py syncdb
+pip install gunicorn
+gunicorn lmsbackend.wsgi -w 4 --bind 0.0.0.0:8000
+```
