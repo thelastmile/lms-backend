@@ -118,7 +118,7 @@ USE_TZ = True
 #CORS settings
 CORS_ORIGIN_WHITELIST = (
         'interchange-dev.thelastmile.org',
-        'interchange.thelastmile.org'
+        'interchange.thelastmile.org',
     )
 
 CORS_ALLOW_CREDENTIALS = True
@@ -164,6 +164,7 @@ REST_FRAMEWORK = {
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATIC_ROOT = 'static/'
 
 # AMAZON S3
 COPY_UPLOADED_FILES_TO_S3 = True
@@ -178,7 +179,7 @@ STATIC_URL = "//%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
 
 MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
-#STATIC_DIRECTORY = '/static/'
+STATIC_DIRECTORY = '/static/'
 MEDIA_DIRECTORY = '/media/'
 
 # LOCAL FILESYSTEM (DISABLED)
