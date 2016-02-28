@@ -116,7 +116,7 @@ USE_L10N = True
 USE_TZ = True
 
 #CORS settings
- CORS_ORIGIN_WHITELIST = (
+CORS_ORIGIN_WHITELIST = (
         'interchange-dev.thelastmile.org',
         'interchange.thelastmile.org'
     )
