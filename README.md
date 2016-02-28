@@ -155,3 +155,12 @@ pip install -r requirements.txt
 pip install gunicorn
 gunicorn lmsbackend.wsgi -w 4 --bind 0.0.0.0:8000
 ```
+
+### API Live Docs
+Swagger interactive docs can be seen at ANY deployment backend paths by adding "/api/docs/" to the server path.
+For example: http://tlmlmsbackend-staging.us-west-2.elasticbeanstalk.com/api/docs/
+
+Or a future example on location:
+http://ironwood-lms-backend/api/docs/
+
+To view the docs you must be an authenticated Super User.  Ensure that you've logged in at /admin before trying to visit /api/docs/
