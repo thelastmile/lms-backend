@@ -211,6 +211,11 @@ MEDIA_MISC = '/media/assets/misc/'
 MEDIA_PHOTOS = '/media/assets/photos/'
 MEDIA_CONTENT_THUMBNAILS = '/media/assets/content_thumbnails/'
 
+SWAGGER_SETTINGS = {
+    'is_authenticated': True,
+    'is_superuser': True,
+}
+
 # Import local settings
 try:
     from local_settings import *
