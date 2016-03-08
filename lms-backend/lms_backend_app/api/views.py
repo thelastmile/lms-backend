@@ -215,6 +215,14 @@ class NoteViewSet(viewsets.ModelViewSet):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
 
+    def get_queryset(self):
+        print self.request.user
+        queryset = Note.objects.order_by('id').all()
+        course = self.request.query_params.get('course', None)
+        if course is not None:
+            queryset = queryset.filter(course__id=course)
+        return queryset
+
 class FeedbackViewSet(viewsets.ModelViewSet):
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
