@@ -217,10 +217,14 @@ class NoteViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         print self.request.user
-        queryset = Note.objects.order_by('id').all()
-        course = self.request.query_params.get('course', None)
-        if course is not None:
-            queryset = queryset.filter(course__id=course)
+        if self.request.user.is_staff or self.request.user.groups.filter(name="Faculty").exists():
+            # Filter by student - TEACHERS ONLY
+            student = self.request.query_params.get('student', None)
+            queryset = Note.objects.order_by('id').all()
+            if student is not None:
+                queryset = queryset.filter(author__id=student)
+        else:
+            queryset = Note.objects.filter(instructor_author=None).filter(author=self.request.user)
         return queryset
 
 class FeedbackViewSet(viewsets.ModelViewSet):
