@@ -224,7 +224,7 @@ class NoteViewSet(viewsets.ModelViewSet):
             if student is not None:
                 queryset = queryset.filter(author__id=student)
         else:
-            queryset = Note.objects.order_by('-id').filter(instructor_author=None).filter(author=self.request.user)
+            queryset = Note.objects.order_by('-id').filter(instructor_author__isnull=True).filter(author=self.request.user)
         return queryset
 
 class FeedbackViewSet(viewsets.ModelViewSet):
