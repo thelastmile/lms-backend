@@ -313,6 +313,16 @@ class Setting(models.Model):
     def __unicode__(self):
         return self.name
 
+class HomePageContent(models.Model):
+    course = models.OneToOneField(
+        Course,
+        primary_key = True,
+    )
+    content = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        return "%s" % (self.course.name)
+
 class AccessLog(models.Model):
     user = models.ForeignKey(User)
     path = models.TextField(blank=True, null=True)

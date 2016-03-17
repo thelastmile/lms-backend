@@ -2,7 +2,9 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from lms_backend_app.models import UserProfile, Course, CustomContentType, FeedbackType, CodeType, Question, Note, \
     Feedback, Module, BinaryContent, TextContent, Test, UnitTest, Choice, TestResult, Tag, Attendance, Code, Setting, \
-    CodeTestInstructionsJSON, AccessLog, Attendance, DailyScoresTech, DailyScoresSocial, DailyScoresParticipation
+    CodeTestInstructionsJSON, AccessLog, Attendance, DailyScoresTech, DailyScoresSocial, DailyScoresParticipation, \
+    HomePageContent
+
 from lmsbackend import settings
 import os
 import json
@@ -268,4 +270,8 @@ class CodeTestInstructionsJSONSerializer(serializers.ModelSerializer):
 class AccessLogSerializer(serializers.ModelSerializer):
     class Meta:
         model = AccessLog
+
+class HomePageContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageContent
 

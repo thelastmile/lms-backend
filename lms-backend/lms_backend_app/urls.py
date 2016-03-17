@@ -33,6 +33,7 @@ router.register(r'accesslog', AccessLogViewSet, base_name='accesslog')
 router.register(r'dailyscorestech', DailyScoresTechViewSet, base_name='dailyscorestech')
 router.register(r'dailyscoressocial', DailyScoresSocialViewSet, base_name='dailyscoressocial')
 router.register(r'dailyscoresparticipation', DailyScoresParticipationViewSet, base_name='dailyscoresparticipation')
+router.register(r'homepagecontent', HomePageContentViewSet, base_name='homepagecontent')
 router.register(r'listsystemvars', list_system_vars, base_name='listsystemvars')
 
 

@@ -40,4 +40,4 @@ admin.site.register(AccessLog)
 admin.site.register(DailyScoresParticipation)
 admin.site.register(DailyScoresTech)
 admin.site.register(DailyScoresSocial)
-
+admin.site.register(HomePageContent)

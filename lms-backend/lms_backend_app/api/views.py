@@ -361,3 +361,17 @@ class AccessLogViewSet(viewsets.ModelViewSet):
         if userid is not None and userid != "":
             queryset = queryset.filter(user__id=userid.strip("/")).order_by('-id')[:1]
         return queryset
+
+class HomePageContentViewSet(viewsets.ModelViewSet):
+    queryset = HomePageContent.objects.all()
+    serializer_class = HomePageContentSerializer
+
+    def get_queryset(self):
+        queryset = HomePageContent.objects.all()
+        course = self.request.query_params.get('course', None)
+        if course is not None:
+            course_obj = Course.objects.filter(id=course)
+            if len(course_obj) >= 1:
+                queryset, created = HomePageContent.objects.get_or_create(course=course_obj[0])
+            queryset = HomePageContent.objects.filter(course__id=course)
+        return queryset
