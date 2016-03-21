@@ -3,7 +3,7 @@ from rest_framework import serializers
 from lms_backend_app.models import UserProfile, Course, CustomContentType, FeedbackType, CodeType, Question, Note, \
     Feedback, Module, BinaryContent, TextContent, Test, UnitTest, Choice, TestResult, Tag, Attendance, Code, Setting, \
     CodeTestInstructionsJSON, AccessLog, Attendance, DailyScoresTech, DailyScoresSocial, DailyScoresParticipation, \
-    HomePageContent
+    HomePageContent, CodeRunResult
 
 from lmsbackend import settings
 import os
@@ -237,6 +237,10 @@ class TextContentSerializer(serializers.ModelSerializer):
 class TestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Test
+
+class CodeRunResultSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CodeRunResult
 
 class UnitTestSerializer(serializers.ModelSerializer):
     class Meta:

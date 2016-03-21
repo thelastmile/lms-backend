@@ -330,6 +330,11 @@ class TestResultViewSet(viewsets.ModelViewSet):
     queryset = TestResult.objects.all()
     serializer_class = TestResultSerializer
 
+
+class CodeRunResultViewSet(viewsets.ModelViewSet):
+    queryset = CodeRunResult.objects.all()
+    serializer_class = CodeRunResultSerializer
+
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer

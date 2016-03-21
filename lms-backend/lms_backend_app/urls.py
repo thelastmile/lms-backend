@@ -23,6 +23,7 @@ router.register(r'binarycontentlite', BinaryContentViewSetLite, base_name='binar
 router.register(r'binarycontentultralite', BinaryContentViewSetUltraLite, base_name='binarycontentlite')
 router.register(r'textcontent', TextContentViewSet, base_name='textcontent')
 router.register(r'test', TestResultViewSet, base_name='test')
+router.register(r'coderun', CodeRunResultViewSet, base_name='coderun')
 router.register(r'unittest', UnitTestViewSet, base_name='unittest')
 router.register(r'choice', ChoiceViewSet, base_name='choice')
 router.register(r'testresult', TestResultViewSet, base_name='testresult')

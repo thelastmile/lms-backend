@@ -295,6 +295,25 @@ class TestResult(models.Model):
     def __unicode__(self):
         return self.score
 
+PASS_FAIL = (
+    ("PASS", "PASS"),
+    ("FAIL", "FAIL"),
+)
+
+class CodeRunResult(models.Model):
+    student = models.ForeignKey(UserProfile)
+    code = models.TextField(blank=True, null=True)
+    tests = models.TextField(blank=True, null=True)
+    status = models.CharField(max_length=4,choices=PASS_FAIL,blank=True, null=True)
+    course = models.ForeignKey(Course,blank=True, null=True)
+    module = models.ForeignKey(Module,blank=True, null=True)
+    date = models.DateTimeField(default=timezone.now)
+    problem_link = models.ForeignKey(CodeTestInstructionsJSON)
+    problem_name = models.CharField(max_length=256)
+
+    def __unicode__(self):
+        return "%s %s %s" % (self.student,self.date,self.status)
+
 class Tag(models.Model):
     model = models.CharField(max_length=256)
     record_id = models.IntegerField()
