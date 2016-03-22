@@ -192,12 +192,12 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 #STATIC_DIRECTORY = '/var/tlm-lms/static/'
-STATIC_DIRECTORY = '%s/static'  % BASE_DIR
+STATIC_DIRECTORY = 'static/'
 STATIC_URL = '/static/'
 
 #MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
-MEDIA_ROOT = '%s/media/' % BASE_DIR
-#MEDIA_ROOT = 'media/'
+#MEDIA_ROOT = '%s/media/' % BASE_DIR
+MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
 
 # Setup for S3
@@ -213,14 +213,14 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600 #100MB
 
 # FULL FILE UPLOAD PATHS
 # These directories will be created if they don't exist
-MEDIA_IMG = 'assets/img/'
-MEDIA_VIDEO = 'assets/video/'
-MEDIA_PDF = 'assets/pdf/'
-MEDIA_HTML = 'assets/html/'
-MEDIA_DOCS = 'assets/docs/'
-MEDIA_MISC = 'assets/misc/'
-MEDIA_PHOTOS = 'assets/photos/'
-MEDIA_CONTENT_THUMBNAILS = 'assets/content_thumbnails/'
+MEDIA_IMG = 'media/assets/img/'
+MEDIA_VIDEO = 'media/assets/video/'
+MEDIA_PDF = 'media/assets/pdf/'
+MEDIA_HTML = 'media/assets/html/'
+MEDIA_DOCS = 'media/assets/docs/'
+MEDIA_MISC = 'media/assets/misc/'
+MEDIA_PHOTOS = 'media/assets/photos/'
+MEDIA_CONTENT_THUMBNAILS = 'media/assets/content_thumbnails/'
 
 SWAGGER_SETTINGS = {
     'is_authenticated': True,

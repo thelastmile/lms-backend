@@ -68,7 +68,7 @@ db.sqlite3
 node_modules/*
 bower_components
 local_settings.py
-lmsbackend/media/**
-lmsbackend/tmp/*
-lmsbackend/static/**
-lmsbackend/assets/**
+lms-backend/media/**
+lms-backend/tmp/*
+lms-backend/static/**
+lms-backend/assets/**

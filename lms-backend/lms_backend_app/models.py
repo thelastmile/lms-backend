@@ -181,9 +181,6 @@ class BinaryContent(models.Model):
     order = models.IntegerField(blank=True, null=True)
 
     def getIndexFileList(self, awsid,awskey,bucket,source_folder,to_path,uuid):
-        #c = boto.connect_s3(awsid,awskey) 
-        #b = c.get_bucket(bucket) 
-        #k = Key(b)
         index_file_list = []
         for path,directory,files in os.walk(source_folder):
             destination_file_path = path.split('/',1)[1]
@@ -191,20 +188,7 @@ class BinaryContent(models.Model):
                 destination_path = os.path.relpath(os.path.join(to_path,destination_file_path,file))
                 relpath = os.path.relpath(os.path.join(path,file))
                 if 'index.htm' in file:
-                    index_file_list.append(os.path.relpath(os.path.join(destination_file_path,file).split('/',1)[1]));
-                # if not b.get_key(relpath):
-                #     print 'sending  ...%s' % relpath[-30:]
-                #     k.key = destination_path
-                #     k.set_contents_from_filename(relpath)
-                #     try:
-                #         k.set_acl('public-read')
-                #     except:
-                #         print "failed"
-        # prefix = os.path.join(to_path,uuid)
-        # rs = b.get_all_keys(prefix=prefix)
-        # print rs
-        # for r in rs:
-        #     print r.key
+                    index_file_list.append(os.path.relpath(os.path.join(destination_file_path,file).split('/',3)[3]));
         return json.dumps(index_file_list)
 
     def uploadResultToS3(self, awsid,awskey,bucket,source_folder,to_path,uuid): 
@@ -241,9 +225,6 @@ class BinaryContent(models.Model):
             """
             ext = self.file.name.split(".")[-1].lower()
             directoryname = '%s' % (uuid.uuid4())
-            #self.extracted_path = '%s/%s/' % (settings.FILE_UPLOAD_TEMP_DIR, directoryname)
-
-
             if settings.COPY_UPLOADED_FILES_TO_S3:
                 if ext.lower() == 'zip':
                     zfile = zipfile.ZipFile(self.file)
@@ -263,11 +244,6 @@ class BinaryContent(models.Model):
                 shutil.rmtree(self.extracted_path, ignore_errors=True)
                 self.extracted_path = "/%s%s/" % (settings.MEDIA_HTML,directoryname)
             else:
-                # if ext.lower() == 'zip':
-                #     zfile = zipfile.ZipFile(self.file)
-                #     self.extracted_path = '%s/%s/' % (settings.FILE_UPLOAD_TEMP_DIR, directoryname)
-                #     zfile.extractall(self.extracted_path)
-                
                 if ext.lower() == 'zip':
                     zfile = zipfile.ZipFile(self.file)
                     self.extracted_path = '%s%s/' % (settings.MEDIA_HTML, directoryname)
@@ -280,9 +256,7 @@ class BinaryContent(models.Model):
                         self.extracted_path,
                         settings.MEDIA_HTML,
                         directoryname)
-
-                    #self.index_file_list = self.getIndexFileList(self.extracted_path,settings.MEDIA_HTML,directoryname)
-                    
+                self.extracted_path = "/%s%s/" % (settings.MEDIA_HTML,directoryname)    
         
         super(BinaryContent, self).save(*args, **kwargs)
 
