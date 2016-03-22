@@ -171,33 +171,33 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 # AMAZON S3
-COPY_UPLOADED_FILES_TO_S3 = True
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+# COPY_UPLOADED_FILES_TO_S3 = True
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-STATIC_URL = "//%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
-ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
+# STATIC_URL = "//%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
+# ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
 
-MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
-#STATIC_DIRECTORY = '/static/'
+# MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
+# #STATIC_DIRECTORY = '/static/'
 MEDIA_DIRECTORY = '/media/'
 
 # LOCAL FILESYSTEM (DISABLED)
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
-# STATIC_DIRECTORY = '/var/tlm-lms/static/'
-# STATIC_URL = '/static/'
+STATIC_DIRECTORY = '/var/tlm-lms/static/'
+STATIC_URL = '/static/'
 
-# MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
-# MEDIA_URL = '/media/'
+MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
+MEDIA_URL = '/media/'
 
 # Setup for S3
-MEDIA_ROOT = '/media/assets/'
+#MEDIA_ROOT = '/media/assets/'
 
 # File upload perms
 FILE_UPLOAD_PERMISSIONS = 0555
@@ -230,30 +230,30 @@ except ImportError:
 # Make directories AFTER loading local_settings
 
 # Create our file directories
-# directory = '%s' % (MEDIA_ROOT)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_IMG)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_VIDEO)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_PDF)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_HTML)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
-# directory = '%s%s' % (MEDIA_ROOT,MEDIA_CONTENT_THUMBNAILS)
-# if not os.path.exists(directory):
-#     os.makedirs(directory)
+directory = '%s' % (MEDIA_ROOT)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_IMG)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_VIDEO)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_PDF)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_HTML)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_DOCS)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_MISC)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_PHOTOS)
+if not os.path.exists(directory):
+    os.makedirs(directory)
+directory = '%s%s' % (MEDIA_ROOT,MEDIA_CONTENT_THUMBNAILS)
+if not os.path.exists(directory):
+    os.makedirs(directory)
