@@ -15,7 +15,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -117,9 +116,11 @@ USE_L10N = True
 USE_TZ = True
 
 #CORS settings
+
 CORS_ORIGIN_WHITELIST = (
         'interchange-dev.thelastmile.org',
         'interchange.thelastmile.org',
+        '127.0.0.1:3000',
     )
 
 CORS_ALLOW_CREDENTIALS = True
@@ -140,7 +141,7 @@ CORS_ALLOW_METHODS = (
  'PUT',
  'PATCH',
  'DELETE',
- 'OPTIONS'
+ 'OPTIONS',
 )
 
 
@@ -171,7 +172,7 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 # AMAZON S3
-# COPY_UPLOADED_FILES_TO_S3 = True
+COPY_UPLOADED_FILES_TO_S3 = False
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 # AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
@@ -184,37 +185,42 @@ REST_FRAMEWORK = {
 
 # MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
 # #STATIC_DIRECTORY = '/static/'
-MEDIA_DIRECTORY = '/media/'
+#MEDIA_DIRECTORY = '/media/'
 
 # LOCAL FILESYSTEM (DISABLED)
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
-STATIC_DIRECTORY = '/var/tlm-lms/static/'
+#STATIC_DIRECTORY = '/var/tlm-lms/static/'
+STATIC_DIRECTORY = '%s/static'  % BASE_DIR
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
+#MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
+MEDIA_ROOT = '%s/media/' % BASE_DIR
+#MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
 
 # Setup for S3
 #MEDIA_ROOT = '/media/assets/'
 
 # File upload perms
-FILE_UPLOAD_PERMISSIONS = 0555
-FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0555
+#FILE_UPLOAD_PERMISSIONS = 0555
+#FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0555
+FILE_UPLOAD_PERMISSIONS = 0777
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0777
 FILE_UPLOAD_TEMP_DIR = 'tmp' # Docs show no trailing slash?  Silly Django
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600 #100MB
 
 # FULL FILE UPLOAD PATHS
 # These directories will be created if they don't exist
-MEDIA_IMG = '/media/assets/img/'
-MEDIA_VIDEO = '/media/assets/video/'
-MEDIA_PDF = '/media/assets/pdf/'
-MEDIA_HTML = 'media/assets/html/'
-MEDIA_DOCS = '/media/assets/docs/'
-MEDIA_MISC = '/media/assets/misc/'
-MEDIA_PHOTOS = '/media/assets/photos/'
-MEDIA_CONTENT_THUMBNAILS = '/media/assets/content_thumbnails/'
+MEDIA_IMG = 'assets/img/'
+MEDIA_VIDEO = 'assets/video/'
+MEDIA_PDF = 'assets/pdf/'
+MEDIA_HTML = 'assets/html/'
+MEDIA_DOCS = 'assets/docs/'
+MEDIA_MISC = 'assets/misc/'
+MEDIA_PHOTOS = 'assets/photos/'
+MEDIA_CONTENT_THUMBNAILS = 'assets/content_thumbnails/'
 
 SWAGGER_SETTINGS = {
     'is_authenticated': True,

@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from . import views
 from .api.views import *
 from rest_framework import routers
+from django.conf import settings
 from django.conf.urls.static import static
 
 # API router set up
@@ -46,4 +47,9 @@ urlpatterns = [
 	url(r'^$', views.index, name='index'),
 	url(r'^api/attendancegraphdaily/$', AttendanceGraphViewDaily.as_view()),
 	#url(r'^api/binarycontent/$', BinaryContentView.as_view()),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG :
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+    ]
