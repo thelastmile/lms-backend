@@ -168,8 +168,16 @@ REST_FRAMEWORK = {
 #    )
 #}
 
+
+### STATIC AND MEDIA FILES ####
+
+### THIS IS SETUP FOR LOCAL RUNNING INSTANCE ###
+
+### FOR S3 MEDIA FILE USAGE UNCOMMENT S3 ITEMS
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+
 
 # AMAZON S3
 COPY_UPLOADED_FILES_TO_S3 = False
@@ -184,19 +192,22 @@ COPY_UPLOADED_FILES_TO_S3 = False
 # ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
 
 # MEDIA_URL = "//s3.amazonaws.com/%s/" % AWS_STORAGE_BUCKET_NAME
-# #STATIC_DIRECTORY = '/static/'
-#MEDIA_DIRECTORY = '/media/'
+# STATIC_DIRECTORY = '/static/'
+# MEDIA_DIRECTORY = '/media/'
 
 # LOCAL FILESYSTEM (DISABLED)
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
+# You can change local the path of static here
 #STATIC_DIRECTORY = '/var/tlm-lms/static/'
 STATIC_DIRECTORY = 'static/'
 STATIC_URL = '/static/'
 
+# You can change local the path of media here
 #MEDIA_ROOT = '/var/tlm-lms/media/' # Absolute path to local file system (or network path) with trailing slash
 #MEDIA_ROOT = '%s/media/' % BASE_DIR
+
 MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
 
@@ -219,7 +230,7 @@ MEDIA_PDF = 'media/assets/pdf/'
 MEDIA_HTML = 'media/assets/html/'
 MEDIA_DOCS = 'media/assets/docs/'
 MEDIA_MISC = 'media/assets/misc/'
-MEDIA_PHOTOS = 'media/assets/photos/'
+MEDIA_PHOTOS = 'assets/photos/' #media gets auto prepended to this
 MEDIA_CONTENT_THUMBNAILS = 'media/assets/content_thumbnails/'
 
 SWAGGER_SETTINGS = {
